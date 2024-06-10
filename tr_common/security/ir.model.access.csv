@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tr_company_admin1,tr.company_admin1,model_tr_company,base.group_system,1,1,1,1

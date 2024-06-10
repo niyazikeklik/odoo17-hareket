@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="view_message_filterr_form" model="ir.ui.view">
+    <field name="name">message.filter.form</field>
+    <field name="model">message.filter</field>
+    <field name="arch" type="xml">
+        <form string="Message Filter">
+            <group>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="baslangic" />
+                <field name="bitis" />
+                <field name="replace_with"/>
+                <field name="sequence"/>
+                <field name="active"/>
+            </group>
+        </form>
+    </field>
+
+</record>
+
+<record id="view_message_filterr_tree" model="ir.ui.view">
+    <field name="name">message.filter.tree</field>
+    <field name="model">message.filter</field>
+    <field name="arch" type="xml">
+        <tree string="Message Filter">
+            <field name="name"/>
+            <field name="model_id"/>
+            <field name="baslangic" />
+            <field name="bitis" />
+            <field name="replace_with"/>
+            <field name="sequence"/>
+            <field name="active"/>
+        </tree>
+    </field>
+</record>
+
+<record id="action_message_filterr" model="ir.actions.act_window">
+    <field name="name">Message Filter</field>
+    <field name="res_model">message.filter</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="message_filterr.view_message_filterr_tree"/>
+</record>
+
+<menuitem id="menu_message_filterr" name="Message Filter" action="action_message_filterr"/>
+
+</odoo>

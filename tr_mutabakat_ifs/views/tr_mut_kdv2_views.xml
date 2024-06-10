@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_tr_mut_kdv2_filter" model="ir.ui.view">
+            <field name="name">tr.mut.kdv2.search</field>
+            <field name="model">tr.mut.kdv2</field>
+            <field name="arch" type="xml">
+                <search string="KDV2 Bildirim">
+                    <field name="partner_id" string="Cari" />
+                    <field name="vat" string="Vkn/Tckn No"/>
+                    <field name="email" string="E-Posta" />
+                    <separator/>
+                    <searchpanel>
+                        <field name="donem_id" string="Dönem" icon="fa-building" enable_counters="1"/>
+                        <field name="state" string="Durum" icon="fa-battery" enable_counters="1"/>
+                    </searchpanel>
+                    <group expand="1" string="Grupla">
+                        <filter name="donem_id" string="Dönem" context="{'group_by': 'donem_id'}"/>
+                        <filter name="state" string="Durum" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        <record model="ir.ui.view" id="tr_mut_kdv2_tree_view">
+            <field name="name">tr.mut.kdv2.tree</field>
+            <field name="model">tr.mut.kdv2</field>
+            <field name="arch" type="xml">
+                <tree string="KDV2 Listesi"
+                           decoration-info="state == 'Taslak'"
+                           decoration-warning="state == 'Gönderildi'"
+                           decoration-success="state == 'Kabul Edildi'"
+                           decoration-danger="state == 'Reddedildi'">
+                    <header>
+                        <button name="btn_send_mail_multi" target="new" type="object" string="KDV2 Bildir" class="btn btn-primary"  icon="fa-solid fa-envelope"/>
+                        <button name="action_tekrar_hesapla" target="new" type="object" string="IFS'den Yenile" class="btn btn-secondary"  icon="fa-solid fa-calculator"/>
+                    </header>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'Taslak'"
+                           decoration-warning="state == 'Gönderildi'"
+                           decoration-success="state == 'Kabul Edildi'"
+                           decoration-danger="state == 'Reddedildi'"/>
+                    <field name="state" optional="hide"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="donem_id" optional="hide"/>
+                    <field name="tarih"/>
+                    <field name="partner_id"/>
+                    <field name="vat" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="tevkifat_tipi"/>
+                    <field name="tevkifat_tutari"/>
+                    <field name="ilgili_faturalar"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tr_mut_kdv2_form_view">
+            <field name="name">tr.mut.kdv2.form</field>
+            <field name="model">tr.mut.kdv2</field>
+            <field name="arch" type="xml">
+                <form string="KDV2 Bildirim">
+                    <header>
+                        <button name="btn_send_mail" string="KDV2 Bildir" type="object" class="btn btn-primary"/>
+                        <button name="action_yanit_sifirla" string="Yanıt Sıfırla" type="object" class="btn btn-secondary"/>
+                        <button name="action_tekrar_hesapla" string="IFS'den Yenile" type="object" class="btn btn-secondary"/>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                            <field name="donem_id" optional="hide"/>
+                            <field name="tarih"/>
+                            <field name="partner_id"/>
+                            <field name="vat" optional="show"/>
+                            <field name="email" optional="show"/>
+                            <field name="tevkifat_tipi"/>
+                            <field name="tevkifat_tutari"/>
+                            <field name="ilgili_faturalar"/>
+
+                            <field name="red_aciklama"/>
+                            <field name="survey_input_id" groups="base.group_system" />
+                            <field name="survey_start_url" widget="url"/>
+
+
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="action_tr_mut_kdv2" model="ir.actions.act_window">
+            <field name="name">KDV2 Bildirim Listesi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tr.mut.kdv2</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"></p>
+            </field>
+        </record>
+    </data>
+</odoo>

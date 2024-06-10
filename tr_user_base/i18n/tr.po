@@ -1,0 +1,257 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tr_user_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-08 12:42+0000\n"
+"PO-Revision-Date: 2024-04-08 12:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__bank_account_id
+msgid "Bank Account Number"
+msgstr "Banka Hesap No"
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_hr_employee_base
+msgid "Basic Employee"
+msgstr "Temel Çalışan"
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_res_company_ldap
+msgid "Company LDAP configuration"
+msgstr "Şirket LDAP ayarları"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__create_uid
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__create_date
+msgid "Created on"
+msgstr "Oluşturma"
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_res_currency
+msgid "Currency"
+msgstr "Para Birimi"
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_hr_department
+msgid "Department"
+msgstr "Departman"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_department__code
+msgid "Dept Code"
+msgstr "Departmen Kodu"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__display_name
+msgid "Display Name"
+msgstr "Görünen Adı"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__birthday_this_year
+msgid "Doğum Günü"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__birthday
+msgid "Doğum Tarihi"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__birthday_flag
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__birthday_flag
+msgid "Doğumgünü"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__birthday_color
+msgid "Doğumgünü Rengi"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_hr_employee
+msgid "Employee"
+msgstr "Çalışan"
+
+#. module: tr_user_base
+#: model:ir.model.fields,help:tr_user_base.field_hr_employee_public__bank_account_id
+msgid "Employee bank salary account"
+msgstr "Çalışan banka ücret hesabı"
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_tr_company
+msgid "Group Company"
+msgstr "Grup Şirketi"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__tr_company_id
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__tr_company_id
+#: model_terms:ir.ui.view,arch_db:tr_user_base.view_employee_eportal_search
+msgid "Grup Şirketi"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__earned
+msgid "Hakedilen"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__id
+msgid "ID"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__person_id
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__person_id
+msgid "IFS Kişi ID"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__rest
+msgid "Kalan"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__rest_leave_days
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__rest_leave_days
+msgid "Kalan İzin"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.actions.server,name:tr_user_base.ir_cron_kullanici_ve_calisan_entegrasyonu_ir_actions_server
+msgid "Kullanıcı ve Çalışan entegrasyonu"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__used
+msgid "Kullanılan"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__used_leave_days
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__used_leave_days
+msgid "Kullanılan İzin"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__write_uid
+msgid "Last Updated by"
+msgstr "Son Güncelleyen"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__write_date
+msgid "Last Updated on"
+msgstr "Son Güncelleme"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__acc_emp_no
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__acc_emp_no
+msgid "Muhasebe Sicil No"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.actions.act_window,name:tr_user_base.act_employee_calendar
+#: model:ir.actions.act_window,name:tr_user_base.act_employee_from_tr_company
+msgid "Personeller"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__private_email
+msgid "Private Email"
+msgstr "Kişisel E-Posta"
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_hr_employee_public
+msgid "Public Employee"
+msgstr "Herkese Açık Personel"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_res_currency__sequence
+msgid "Sequence"
+msgstr "Sıra"
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__emp_no
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__emp_no
+msgid "Sicil No"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__allocated_leave_days
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__allocated_leave_days
+msgid "Toplam İzin Hakedişi"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_res_users
+msgid "User"
+msgstr "Kullanıcı"
+
+#. module: tr_user_base
+#: model_terms:ir.actions.act_window,help:tr_user_base.act_employee_from_tr_company
+msgid "Yeni bir personel ekle"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__year
+msgid "Yıl"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__annual_leave_summaries
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__annual_leave_summaries
+#: model_terms:ir.ui.view,arch_db:tr_user_base.view_employee_form_inherited_eportal
+msgid "Yıllık İzin Özeti"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_tr_employee_leavesum__employee_id
+msgid "Çalışan"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model,name:tr_user_base.model_tr_employee_leavesum
+msgid "Çalışan Yıllık İzin Özeti"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__leave_allocation_date
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__leave_allocation_date
+msgid "İzin Hakedeceği Tarih"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__date_from
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__date_from
+msgid "İşe Giriş Tarihi"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.actions.server,name:tr_user_base.ir_cron_isten_ayrilanlari_pasif_yap_ir_actions_server
+msgid "İşten Ayrılanları Pasif Yap"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__date_until
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__date_until
+msgid "İşten Çıkış Tarihi"
+msgstr ""
+
+#. module: tr_user_base
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee__start_date_on_workplace
+#: model:ir.model.fields,field_description:tr_user_base.field_hr_employee_public__start_date_on_workplace
+msgid "İşyeri Başlangıç Tarihi"
+msgstr ""

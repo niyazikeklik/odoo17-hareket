@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_oracle_pool_filter" model="ir.ui.view">
+            <field name="name">oracle.pool.search</field>
+            <field name="model">oracle.pool</field>
+            <field name="arch" type="xml">
+                <search string="Oracle Pool">
+                    <field name="name"/>
+                    <field name="table_name"/>
+                    <field name="query"/>
+                </search>
+             </field>
+        </record>
+
+        <record model="ir.ui.view" id="oracle_pool_tree_view">
+            <field name="name">oracle.pool.tree</field>
+            <field name="model">oracle.pool</field>
+            <field name="arch" type="xml">
+                <tree string="Oracle Pools">
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'passive'"/>
+                    <field name="company_id"/>
+                    <field name="name"/>
+                    <field name="table_name"/>
+                    <field name="cron_id"/>
+                    <field name="query"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="oracle_pool_form_view">
+            <field name="name">oracle_pool.form</field>
+            <field name="model">oracle.pool</field>
+            <field name="arch" type="xml">
+                <form string="Oracle Pool">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="name"/>
+                            <field name="table_name"/>
+                            <field name="cron_id"/>
+                            <field name="query"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="action_oracle_pool" model="ir.actions.act_window">
+            <field name="name">Oracle Pools</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">oracle.pool</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('company_id','=',allowed_company_ids[0])]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"></p>
+            </field>
+        </record>
+        <menuitem
+            id="menu_oracle_pools"
+            name="Oracle Veri Havuzu"
+            parent="base.menu_automation"
+            action="action_oracle_pool"
+            groups = "base.group_system"
+            sequence="0"/>
+    </data>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_hr_puantaj_root"
+            name="Personel Puantaj"
+            sequence="-50"/>
+        <menuitem
+            id="menu_hr_puantaj"
+            name="Puantaj Girişi"
+            parent="menu_hr_puantaj_root"
+            action="hr_work_entry.hr_work_entry_action"
+            sequence="10"/>
+        <menuitem
+            id="menu_hr_work_entry_action_conflict"
+            name="Hatalı Puantajlar"
+            parent="menu_hr_puantaj_root"
+            action="hr_work_entry.hr_work_entry_action_conflict"
+            sequence="20"/>
+        <menuitem
+            id="menu_hr_work_entry_wizard"
+            name="Günlük Puantaj Onayı"
+            parent="menu_hr_puantaj_root"
+            action="action_work_entry_wizard"
+            sequence="20"/>
+        <menuitem
+            id="menu_hr_work_entry_confirm_wizard"
+            name="Günlük Puantaj Onayı"
+            parent="menu_hr_puantaj_root"
+            sequence="80"/>
+        <menuitem
+            id="menu_hr_puantaj_settings"
+            name="Settings"
+            parent="menu_hr_puantaj_root"
+            sequence="90"/>
+        <menuitem
+            id="menu_hr_work_entry_type"
+            name="Puantaj Giriş Tipleri"
+            parent="menu_hr_puantaj_settings"
+            action="hr_work_entry.hr_work_entry_type_action"
+            sequence="20"/>
+        <menuitem
+            id="menu_hr_res_montaj_tipi"
+            name="Res Montaj Tipleri"
+            parent="menu_hr_puantaj_settings"
+            action="hr_puantaj.hr_res_montaj_tipi_action"
+            sequence="20"/>
+
+    </data>
+</odoo>

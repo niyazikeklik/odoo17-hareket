@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_harkt_masraf_turu_filter" model="ir.ui.view">
+            <field name="name">harkt.masraf.turu.search</field>
+            <field name="model">harkt.masraf.turu</field>
+            <field name="arch" type="xml">
+                <search string="Masraf Türü">
+                    <field name="masraf_ongrup_id" string="Ara" filter_domain="['|','|','|','|','|','|','|',('masraf_ongrup_id', 'ilike', self),('masraf_turu_kodu','ilike', self),('name','ilike', self),('satinalma_grup_kodu','ilike', self),('satinalma_grup_adi','ilike', self),('gider_cesidi_kodu','ilike', self),('gider_cesidi_adi','ilike', self),('detay_id','ilike', self)]"/>
+                    <searchpanel>
+                        <field name="tr_company_id" icon="fa-building" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+             </field>
+        </record>
+
+        <record id="view_harkt_masraf_turu_form" model="ir.ui.view">
+            <field name="name">harkt.masraf.turu.form</field>
+            <field name="model">harkt.masraf.turu</field>
+            <field name="arch" type="xml">
+                <form string="masraf_turu Kodları" create="False" delete="False">
+                    <sheet>
+                        <group col="3">
+                            <field name="tr_company_id" readonly="1"/>
+                            <field name="masraf_ongrup_id" readonly="1"/>
+                            <field name="masraf_turu_kodu" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="satinalma_grup_kodu" readonly="1"/>
+                            <field name="satinalma_grup_adi" readonly="1"/>
+                            <field name="proje_zorunlu" readonly="1"/>
+                            <field name="detay_zorunlu" readonly="1"/>
+                            <field name="site_zorunlu" readonly="1"/>
+                            <field name="bolge_zorunlu" readonly="1"/>
+                            <field name="gider_cesidi_kodu" readonly="1"/>
+                            <field name="gider_cesidi_adi" readonly="1"/>
+                            <field name="detay_id" readonly="1"/>
+                            <field name="harcama_toleransi" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_harkt_masraf_turu_tree" model="ir.ui.view">
+            <field name="name">harkt.masraf.turu.tree</field>
+            <field name="model">harkt.masraf.turu</field>
+            <field name="arch" type="xml">
+                <tree string="Masraf Türleri" sample="1" create="False" delete="False">
+                    <field name="tr_company_id" readonly="1"/>
+                    <field name="masraf_ongrup_id" readonly="1"/>
+                    <field name="masraf_turu_kodu" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="satinalma_grup_kodu" readonly="1"/>
+                    <field name="satinalma_grup_adi" readonly="1"/>
+                    <field name="proje_zorunlu" readonly="1"/>
+                    <field name="detay_zorunlu" readonly="1"/>
+                    <field name="site_zorunlu" readonly="1"/>
+                    <field name="bolge_zorunlu" readonly="1"/>
+                    <field name="gider_cesidi_kodu" readonly="1"/>
+                    <field name="gider_cesidi_adi" readonly="1"/>
+                    <field name="detay_id" readonly="1"/>
+                    <field name="harcama_toleransi" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="harkt_masraf_turu_action" model="ir.actions.act_window">
+            <field name="name">Masraf Türü</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">harkt.masraf.turu</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Yeni bir Masraf Türü oluştur
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

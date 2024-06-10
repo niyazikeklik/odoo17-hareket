@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_harkt_kdv_filter" model="ir.ui.view">
+            <field name="name">harkt.kdv.search</field>
+            <field name="model">harkt.kdv</field>
+            <field name="arch" type="xml">
+                <search string="KDV Kodları">
+                    <field name="kdv_kodu" string="Ara" filter_domain="['|',('kdv_kodu', 'ilike', self),('vergi_kodu','ilike', self)]"/>
+                    <searchpanel>
+                        <field name="tr_company_id" icon="fa-building" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+             </field>
+        </record>
+        <record id="view_harkt_kdv_form" model="ir.ui.view">
+            <field name="name">harkt.kdv.form</field>
+            <field name="model">harkt.kdv</field>
+            <field name="arch" type="xml">
+                <form string="Kdv Kodları" create="False" delete="False">
+                    <sheet>
+                        <group col="3">
+                            <field name="tr_company_id" readonly="1"/>
+                            <field name="kdv_kodu" readonly="1"/>
+                            <field name="kdv_orani" readonly="1"/>
+                            <field name="vergi_kodu" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_harkt_kdv_tree" model="ir.ui.view">
+            <field name="name">harkt.kdv.tree</field>
+            <field name="model">harkt.kdv</field>
+            <field name="arch" type="xml">
+                <tree string="Kdv Kodları" sample="1" create="False" delete="False">
+                    <field name="tr_company_id" readonly="1"/>
+                    <field name="kdv_kodu" readonly="1"/>
+                    <field name="kdv_orani" readonly="1"/>
+                    <field name="vergi_kodu" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="harkt_kdv_action" model="ir.actions.act_window">
+            <field name="name">Kdv Kodu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">harkt.kdv</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Yeni bir kdv kodu oluştur
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

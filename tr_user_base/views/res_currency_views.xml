@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_res_currency_form_tr_user_base" model="ir.ui.view">
+            <field name="name">res.currency.form.tr.user.base</field>
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="base.view_currency_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="before">
+                    <field name="sequence"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_res_currency_tree_tr_user_base" model="ir.ui.view">
+            <field name="name">res.currency.tree.tr.user.base</field>
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="base.view_currency_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="sequence" widget="handle" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tr_mut_survey" model="survey.survey">
+            <field name="title">Cari Mutabakat Formu</field>
+            <field name="questions_layout">one_page</field>
+            <field name="questions_selection">all</field>
+            <field name="access_mode">token</field>
+            <field name="users_login_required">False</field>
+            <field name="scoring_type">no_scoring</field>
+            <field name="certification">False</field>
+            <field name="description">Lütfen mutabakat formunu doldurun. Eğer mutabık isek Evet, değil isek Hayır'ı seçip, red nedenini yazınız. Ayrıcı opsiyonel olarak cari ekstrenizi de ekleyebilirsiniz.</field>
+            <field name="description_done">Geri dönüşünüz için teşekkürler</field>
+        </record>
+        <record id="tr_mut_survey_q1" model="survey.question">
+            <field name="title">Mutabık mıyız?</field>
+            <field name="sequence">10</field>
+            <field name="is_page">False</field>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+            <field name="comments_allowed">False</field>
+            <field name="comments_message">Mutabık değilseniz açıklama giriniz:</field>
+            <field name="survey_id" ref="tr_mutabakat.tr_mut_survey"/>
+        </record>
+        <record id="tr_mut_survey_q1_a1" model="survey.question.answer">
+            <field name="question_id" ref="tr_mutabakat.tr_mut_survey_q1"/>
+            <field name="sequence">10</field>
+            <field name="value">Evet</field>
+        </record>
+        <record id="tr_mut_survey_q1_a2" model="survey.question.answer">
+            <field name="question_id" ref="tr_mutabakat.tr_mut_survey_q1"/>
+            <field name="sequence">20</field>
+            <field name="value">Hayır</field>
+        </record>
+        <record id="tr_mut_survey_q_red" model="survey.question">
+            <field name="title">Red Açıklaması</field>
+            <field name="sequence">20</field>
+            <field name="is_page">False</field>
+            <field name="question_type">text_box</field>
+            <field name="constr_mandatory">False</field>
+            <field name="triggering_answer_ids" eval="[(6, 0, [ref('tr_mutabakat.tr_mut_survey_q1_a2')])]"/>
+            <field name="survey_id" ref="tr_mutabakat.tr_mut_survey"/>
+        </record>
+        <record id="tr_mut_survey_q2" model="survey.question">
+            <field name="title">Cari Ekstreniz</field>
+            <field name="sequence">30</field>
+            <field name="is_page">False</field>
+            <field name="question_type">file</field>
+            <field name="constr_mandatory">False</field>
+            <field name="triggering_answer_ids" eval="[(6, 0, [ref('tr_mutabakat.tr_mut_survey_q1_a2')])]"/>
+            <field name="survey_id" ref="tr_mutabakat.tr_mut_survey"/>
+        </record>
+    </data>
+</odoo>

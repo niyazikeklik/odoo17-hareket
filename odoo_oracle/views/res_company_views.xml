@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_company_ora_inherit_form" model="ir.ui.view">
+            <field name="name">res.company.form.ora.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_info']/group" position="inside">
+                    <group string="Oracle Connection Information" name="oracle">
+                        <field name="oracle_server"/>
+                        <field name="oracle_port"/>
+                        <field name="oracle_service_name"/>
+                        <field name="oracle_client_path"/>
+                        <field name="oracle_generic_username"/>
+                        <field name="oracle_generic_password" password="True"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

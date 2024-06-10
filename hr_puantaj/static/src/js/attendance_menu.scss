@@ -1,0 +1,159 @@
+.o-dropdown--menu.dropdown-menu.d-block.p-2.pb-3 {
+    overflow: hidden;
+    max-height: unset !important;
+    right: 0px !important;
+    left: unset !important;
+}
+
+
+.attendance_controls {
+    min-width: 350px !important;
+    
+    .work_type_container{
+        margin-top: 10px;
+        .reason_toggle{
+            width: 100%;
+            right: 20px;
+            color: #555555;
+            cursor: pointer;
+            border-top: 1px dashed #adb5bd;
+            border-bottom: 1px dashed #adb5bd;    
+            padding: 5px 5px 5px 5px;
+            background-color: #9e8b921f;
+        }
+        .work_type_toggle::before{
+            position: absolute;
+            right: 10px;
+        }
+        .work_type_view{
+            width: 100%;
+            height: 30px;
+            padding-top: 3px;
+            position: relative;
+            text-align: center;
+        }  
+    }
+    .project_container{
+        margin-top: 10px;
+        .project_toggle{
+            width: 100%;
+            right: 20px;
+            color: #555555;
+            cursor: pointer;
+            border-top: 1px dashed #adb5bd;
+            border-bottom: 1px dashed #adb5bd;
+            padding: 5px 5px 5px 5px;
+            background-color: #9e8b921f;
+        }
+        .project_toggle::before{
+            position: absolute;
+            right: 10px;
+        }
+        .project_view{
+            width: 100%;
+            height: 30px;
+            padding-top: 3px;
+            position: relative;
+            text-align: center;
+        }
+    }
+    .work_container{
+        margin-top: 10px;
+        .work_toggle{
+            width: 100%;
+            right: 20px;
+            color: #555555;
+            cursor: pointer;
+            border-top: 1px dashed #adb5bd;
+            border-bottom: 1px dashed #adb5bd;
+            padding: 5px 5px 5px 5px;
+            background-color: #9e8b921f;
+        }
+        .work_toggle::before{
+            position: absolute;
+            right: 10px;
+        }
+        .work_view{
+            width: 100%;
+            height: 30px;
+            padding-top: 3px;
+            position: relative;
+            text-align: center;
+        }
+    }
+    .glocation_container{
+        margin-top: 10px;
+        .glocation_toggle{
+            width: 100%;
+            right: 20px;
+            color: #555555;
+            cursor: pointer;
+            border-top: 1px dashed #adb5bd;
+            border-bottom: 1px dashed #adb5bd;    
+            padding: 5px 5px 5px 5px;
+            background-color: #9e8b921f;
+        }
+        .glocation_toggle::before{
+            position: absolute;
+            right: 10px;
+        }
+        .glocation_view{
+            width: 100%;
+            height: 30px;
+            padding-top: 3px;
+            position: relative;
+            text-align: center;
+        }   
+    }
+
+    .geofence_container{
+        margin-top: 10px;
+        .geofence_toggle{
+            width: 100%;
+            right: 20px;
+            color: #555555;
+            cursor: pointer;
+            border-top: 1px dashed #adb5bd;
+            border-bottom: 1px dashed #adb5bd;    
+            padding: 5px 5px 5px 5px;
+            background-color: #9e8b921f;
+        }
+        .geofence_toggle::before{
+            position: absolute;
+            right: 10px;
+        }
+        .geofence_view{
+            width: 100%;
+            min-width: 300px;
+            height: 250px;
+            padding-top: 3px;
+            position: relative;
+            text-align: center;
+        }   
+    }
+
+    .geoipaddress_container{
+        margin-top: 10px;
+        .geoipaddress_toggle{
+            width: 100%;
+            right: 20px;
+            color: #555555;
+            cursor: pointer;
+            border-top: 1px dashed #adb5bd;
+            border-bottom: 1px dashed #adb5bd;    
+            padding: 5px 5px 5px 5px;
+            background-color: #9e8b921f;
+        }
+        .geoipaddress_toggle::before{
+            position: absolute;
+            right: 10px;
+        }
+        .geoipaddress_view{
+            width: 100%;
+            height: 30px;
+            padding-top: 3px;
+            position: relative;
+            text-align: center;
+        }  
+    }
+}

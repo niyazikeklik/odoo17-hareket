@@ -1,0 +1,37 @@
+<odoo>
+    <template id="question_container" name="Mm survey attachment Survey: question container" inherit_id="survey.question_container">
+        <xpath expr="//div[@role='alert']" position="before">
+            <t t-if="question.question_type == 'file'"><t t-call="mm_survey_attachment.question_file"/></t>
+        </xpath>
+        <xpath expr="//div[hasclass('mb-4')]" position="after">
+            <t t-if="question.mm_attachment_ids">
+                <div t-foreach='question.mm_attachment_ids' t-as='attachment'>
+                    <a t-attf-href="{{attachment.website_url}}">Download Attachment</a> - <t t-esc="attachment.name"/><br/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="survey_page_print" name="Mm survey attachment Survey: print page" inherit_id="survey.survey_page_print">
+        <xpath expr="//div[@role='alert']" position="before">
+            <t t-if="question.question_type == 'file'"><t t-call="mm_survey_attachment.question_file"/></t>
+        </xpath>
+    </template>
+
+    <template id="question_file" name="Question: file">
+        <t t-if="not answer_lines.value_file and not question.mm_attachment_ids">
+            <div>
+                <input type="file"
+                       class="form-control-file s_website_form_input bg-transparent text-dark rounded-0 p-0"
+                       t-att-name="question.id"
+                       t-att-data-question-type="question.question_type"/>
+            </div>
+        </t>
+        <t t-if="answer_lines.value_file">
+            <div>
+                <a t-attf-href="{{answer_lines.website_url}}" target="new">Download Attachment</a> - <t t-esc="answer_lines.value_file.name"/><br/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

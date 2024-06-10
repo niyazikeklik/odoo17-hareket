@@ -1,0 +1,813 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_puantaj
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-27 12:52+0000\n"
+"PO-Revision-Date: 2024-05-27 12:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#, python-format
+msgid ", Longitude:"
+msgstr ", Boylam:"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_hr_employee_faces_form
+msgid ""
+"<i class=\"fa fa-frown-o\"/>                            \n"
+"                            Face Descriptor is not loaded, Try again / Load Image."
+msgstr ""
+"<i class=\"fa fa-frown-o\"/>                            \n"
+"                            Yüz Tarama yüklenmedi, Tekrar deneyin / Resmi Yükleyin."
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_hr_employee_faces_form
+msgid ""
+"<i class=\"fa fa-smile-o\"/>                            \n"
+"                            Face Descriptor has been loaded."
+msgstr ""
+"<i class=\"fa fa-smile-o\"/>                            \n"
+"                            Yüz Tarama yüklenmedi."
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "<span class=\"o_form_label\">Face Recognition</span>"
+msgstr "<span class=\"o_form_label\">Yüz Tanıma</span>"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "<span class=\"o_form_label\">Geofence</span>"
+msgstr "<span class=\"o_form_label\">Coğrafi Alan</span>"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "<span class=\"o_form_label\">Geolocation</span>"
+msgstr "<span class=\"o_form_label\">Coğrafi Konum</span>"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "<span class=\"o_form_label\">IP Address</span>"
+msgstr "<span class=\"o_form_label\">IP Adresi</span>"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "<span class=\"o_form_label\">Photo</span>"
+msgstr "<span class=\"o_form_label\">Fotoğraf</span>"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "<span class=\"o_form_label\">Work Type</span>"
+msgstr "<span class=\"o_form_label\">Mesai Tipi</span>"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_hr_employee_faces_kanban
+msgid "Acceptable file size"
+msgstr "Kabul edilen Dosya boyutu"
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_ir_actions_act_window_view
+msgid "Action Window View"
+msgstr "Pencere Aksiyon Görünümü"
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_hr_attendance
+msgid "Attendance"
+msgstr "Katılım"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/geofence_view.js:0
+#: model:ir.model,name:hr_puantaj.model_hr_attendance_geofence
+#, python-format
+msgid "Attendance Geofence"
+msgstr "Coğrafi alan Katılımı"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__attendance_kiosk_mode
+msgid "Attendance Mode"
+msgstr "Katılım Modu"
+
+#. module: hr_puantaj
+#: model:ir.actions.act_window,name:hr_puantaj.hr_attendance_geofence_action
+msgid "Attendances Geofence"
+msgstr "Katılımların Coğrafi Alanları"
+
+#. module: hr_puantaj
+#: model:ir.model.fields.selection,name:hr_puantaj.selection__res_company__attendance_kiosk_mode__barcode_manual
+msgid "Barcode / Face Recognition / RFID and Manual Selection"
+msgstr "Barkod/RFID ve Manuel Seçim"
+
+#. module: hr_puantaj
+#: model:ir.model.fields.selection,name:hr_puantaj.selection__res_company__attendance_kiosk_mode__barcode
+msgid "Barcode / RFID"
+msgstr "Barkod / RFID"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,help:hr_puantaj.field_hr_attendance__in_address
+#: model:ir.model.fields,help:hr_puantaj.field_hr_attendance__in_city
+#: model:ir.model.fields,help:hr_puantaj.field_hr_attendance__in_country_name
+#: model:ir.model.fields,help:hr_puantaj.field_hr_attendance__out_address
+#: model:ir.model.fields,help:hr_puantaj.field_hr_attendance__out_city
+#: model:ir.model.fields,help:hr_puantaj.field_hr_attendance__out_country_name
+msgid "Based on coordinates"
+msgstr "IP Adresine Göre"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_recognition_dialog.xml:0
+#: code:addons/hr_puantaj/static/src/js/attendance_webcam_dialog.xml:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam_dialog.xml:0
+#, python-format
+msgid "Cancel"
+msgstr "İptal"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_webcam_dialog.xml:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam_dialog.xml:0
+#, python-format
+msgid "Capture"
+msgstr "Çek"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_webcam_dialog.js:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam_dialog.js:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam_dialog.xml:0
+#, python-format
+msgid "Capture Snapshot"
+msgstr "Anlık Görüntü Çek"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Check In / Check Out Control"
+msgstr "Giriş / Çıkış Kontrolü"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_ipaddress
+msgid "Check In IP"
+msgstr "Giriş IP"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_location_link
+msgid "Check In Location"
+msgstr "Giriş Lokasyonu"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_photo
+msgid "Check In Photo"
+msgstr "Giriş Foto"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_project_id
+msgid "Check In Project"
+msgstr "Giriş Proje"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_ipaddress
+msgid "Check Out IP"
+msgstr "Çıkış IP"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_location_link
+msgid "Check Out Location"
+msgstr "Çıkış Lokasyonu"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_photo
+msgid "Check Out Photo"
+msgstr "Çıkış Foto"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_project
+msgid "Check Out Project"
+msgstr "Çıkış Proje"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.hr_attendance_view_form
+msgid "Check-In"
+msgstr "Giriş"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.hr_attendance_view_form
+msgid "Check-Out"
+msgstr "Çıkış"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_latitude
+msgid "Check-in Latitude"
+msgstr "Giriş Enlem"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_longitude
+msgid "Check-in Longitude"
+msgstr "Giriş Boylam"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.hr_attendance_view_form
+msgid "Check-in Photo"
+msgstr "Giriş Foto"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_latitude
+msgid "Check-out Latitude"
+msgstr "Çıkış Enlem"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_longitude
+msgid "Check-out Longitude"
+msgstr "Çıkış Boylam"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.hr_attendance_view_form
+msgid "Check-out Photo"
+msgstr "Çıkış Foto"
+
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_recognition_dialog.xml:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam_dialog.xml:0
+#, python-format
+msgid "Close"
+msgstr "Kapat"
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_res_company
+msgid "Companies"
+msgstr "Şirketler"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance_geofence__company_id
+msgid "Company"
+msgstr "Şirket"
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_res_config_settings
+msgid "Config Settings"
+msgstr "Yapılandırma Ayarları"
+
+#. module: hr_puantaj
+#: model:ir.ui.menu,name:hr_puantaj.hr_attendance_settings_redefinition_menu
+msgid "Configuration"
+msgstr "Ayarlar"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#, python-format
+msgid "Describe your work"
+msgstr "Yapılan İş"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance_geofence__description
+msgid "Description"
+msgstr "Açıklama"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.js:0
+#, python-format
+msgid ""
+"Detection Failed: Resource not found, Please add it to your users profile."
+msgstr ""
+"Tanıma Başarısız: Yüz tanıma fotoğrafı bulunamadı. Lütfen kullanıcı profilinizden güncelleyiniz."
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_hr_employee
+msgid "Employee"
+msgstr "Personel"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.hr_attendance_geofence_form
+msgid "Employee attendances"
+msgstr "Personel Katılımları"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance_geofence__employee_ids
+msgid "Employees"
+msgstr "Çalışanlar"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Enable to Capture the Geofence while using the attendance"
+msgstr "Katılımları kullanırken coğrafı alan seçimini aktifleştirin"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Enable to Capture the Geolocation while using the attendance"
+msgstr "Katılımları kullanırken coğrafı konum seçimini aktifleştirin"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Enable to Capture the IP Address while using the attendance"
+msgstr "Katılımları kullanırken IP Adres çekmeyi aktifleştirin"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Enable to Capture the Photo while using the attendance"
+msgstr "Katılımları kullanırken fotoğraf çekmeyi aktifleştirin"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Enable to Check Face Recognition while using the attendance"
+msgstr "Katılımları kullanırken Yüz tanımayı aktifleştirin"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Enable to Check Face Recognition while using the kiosk mode"
+msgstr "Kiosk modunda yüz tanıma kontrolünü aktifleştirin"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__descriptor
+msgid "Face Descriptor"
+msgstr "Yüz tanımlayıcı"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_recognition_dialog.js:0
+#: code:addons/hr_puantaj/static/src/js/attendance_recognition_dialog.xml:0
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_face_recognition
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_face_recognition_k
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_employee_form_faces
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_hr_employee_faces_form
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_hr_employee_faces_kanban
+#, python-format
+msgid "Face Recognition"
+msgstr "Yüz tanıma"
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_hr_employee_faces
+msgid "Face Recognition Images"
+msgstr "Yüz tanıma Resimleri"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "Face Recognition ON"
+msgstr "Yüz Tanıma AÇIK"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee__user_faces
+msgid "Faces"
+msgstr "Yüzler"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.js:0
+#, python-format
+msgid "Failed Face Detection: Please try again. Something went wrong."
+msgstr "Yüz tanıma başarısız: Lütfen tekrar deneyin. Birşeyler ters gitti."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.js:0
+#, python-format
+msgid "Failed: Please try again. Employee not found."
+msgstr "Başarısız: Lütfen tekrar deneyin. Çalışan bulunamadı."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.js:0
+#, python-format
+msgid ""
+"Failed: Please try again. The detected employee does not match the login "
+"employee."
+msgstr ""
+"Başarısız: Lütfen tekrar deneyin. Algılanan çalışan ile giriş yapan çalışan"
+"birbirinden farklıdır."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "Geo Location"
+msgstr "Coğrafi konum"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_geofence
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_geofence_k
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_geofence
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_geofence_k
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Geofence"
+msgstr "Coğrafi Alan"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/geofence_drawing.js:0
+#, python-format
+msgid "Geofence Drawing"
+msgstr "Coğrafi Alan Çizimi"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_geofence_ids
+msgid "Geofence Giriş"
+msgstr "Coğrafi Alan Giriş"
+
+#. module: hr_puantaj
+#: model:ir.model.fields.selection,name:hr_puantaj.selection__ir_actions_act_window_view__view_mode__geofence_view
+#: model:ir.model.fields.selection,name:hr_puantaj.selection__ir_ui_view__type__geofence_view
+msgid "Geofence View"
+msgstr "Coğrafi Alan Görünümü"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_geofence_ids
+msgid "Geofence Çıkış"
+msgstr "Coğrafi Alan Çıkış"
+
+#. module: hr_puantaj
+#: model:ir.ui.menu,name:hr_puantaj.menu_hr_attendance_geofence
+msgid "Geofences"
+msgstr "Coğrafi Alanlar"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_geolocation
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_geolocation_k
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_geolocation
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_geolocation_k
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Geolocation"
+msgstr "Coğrafi Konum"
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_ir_http
+msgid "HTTP Routing"
+msgstr "HTTP Yönlendirme"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__has_descriptor
+msgid "Has Face Descriptor"
+msgstr "Yüz Tanımlayıcı var"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.js:0
+#, python-format
+msgid "Herhangi bir proje lokasyonu içinde görünmüyorsunuz"
+msgstr "Herhangi bir proje lokasyonu içinde görünmüyorsunuz"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_hr_employee_faces_kanban
+msgid "Huge file size. The image should be optimized/reduced."
+msgstr "Dosya çok büyük. Resim optimize edilmeli."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.js:0
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.js:0
+#, python-format
+msgid "IP Adderess not loaded, Please try again."
+msgstr "IP Adresi yüklenemedi, Lütfen tekrar deneyin."
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_ip
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_ip_k
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_ip
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_ip_k
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "IP Address"
+msgstr "IP Adresi"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "IP Address (Public)"
+msgstr "IP Adresi (Açık)"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#, python-format
+msgid "IP:"
+msgstr "IP:"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__image_1920
+msgid "Image"
+msgstr "Resim"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__image_1024
+msgid "Image 1024"
+msgstr "Resim 1024"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__image_128
+msgid "Image 128"
+msgstr "Resim 128"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__image_256
+msgid "Image 256"
+msgstr "Resim 256"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__image_512
+msgid "Image 512"
+msgstr "Resim 512"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__image
+msgid "Images"
+msgstr "Resimler"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__in_address
+msgid "In Address"
+msgstr "Giriş Adresi"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__in_city
+msgid "In City"
+msgstr "Giriş Semt/İlçe"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__in_country_name
+msgid "In Country"
+msgstr "Giriş Ülke"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Kiosk Mode Control"
+msgstr "Kiosk Modu Kontrolü"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#, python-format
+msgid "Lattitude:"
+msgstr "Enlem:"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.js:0
+#, python-format
+msgid "Location not loaded, Please try again."
+msgstr "Lokasyon yüklenemedi, Lütfen tekrar deneyin."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#, python-format
+msgid "Longitude:"
+msgstr "Enlem:"
+
+#. module: hr_puantaj
+#: model:ir.model.fields.selection,name:hr_puantaj.selection__res_company__attendance_kiosk_mode__manual
+msgid "Manual Selection"
+msgstr "Manuel Seçim"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "Map Location"
+msgstr "Harita lokasyonu"
+
+#. module: hr_puantaj
+#: model_terms:ir.actions.act_window,help:hr_puantaj.hr_attendance_geofence_action
+msgid "No Geofence records found"
+msgstr "Coğrafi konum kaydı bulunamadı"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.view_hr_employee_faces_kanban
+msgid ""
+"Optimization required! Reduce the image size or increase your compression "
+"settings."
+msgstr ""
+"Optimizasyon gerekli. Lüffen resim boyutunu küçültün veya sıkıştırma oranını ayarını "
+"değiştirin."
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__out_address
+msgid "Out Address"
+msgstr "Çıkış Adresi"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__out_city
+msgid "Out City"
+msgstr "Çıkış Şehri"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__out_country_name
+msgid "Out Country"
+msgstr "Çıkış Ülkesi"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance_geofence__overlay_paths
+msgid "Paths"
+msgstr "Yollar"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_face_recognition
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_face_recognition_k
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_company__hr_attendance_photo
+#: model:ir.model.fields,field_description:hr_puantaj.field_res_config_settings__hr_attendance_photo
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.res_config_settings_view_form_hr_attendance
+msgid "Photo"
+msgstr "Fotoğraf"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.js:0
+#, python-format
+msgid "Photo not loaded, Please try again."
+msgstr "Foto yüklenemedi, Lütfen tekrar deneyin."
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance_geofence__project_id
+msgid "Proje"
+msgstr "Proje"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__work_entry_id
+msgid "Puantaj"
+msgstr "Puantaj"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "Scan Your Face"
+msgstr "Yüzünüzü tarayın"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#, python-format
+msgid "Select / Enter your Work Type here."
+msgstr "Mesai Tipi Seçin."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "Select / Enter your Work Type here..."
+msgstr "Mesai Tipi Seçin."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#, python-format
+msgid "Select / Enter your Project here."
+msgstr "Proje Seçin."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "Select / Enter your Project here..."
+msgstr "Proje Seçin"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_recognition_dialog.xml:0
+#: code:addons/hr_puantaj/static/src/js/attendance_webcam_dialog.xml:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam_dialog.xml:0
+#: code:addons/hr_puantaj/static/src/xml/face_recognition_dialog.xml:0
+#, python-format
+msgid "Select Camera"
+msgstr "Kamerayı Seçin"
+
+#. module: hr_puantaj
+#: model_terms:ir.ui.view,arch_db:hr_puantaj.hr_attendance_geofence_form
+msgid "Shape"
+msgstr "Şekil"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_employee_faces__employee_id
+msgid "User"
+msgstr "Kullanıcı"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#, python-format
+msgid "Project"
+msgstr "Proje"
+
+#. module: hr_puantaj
+#: model:ir.model,name:hr_puantaj.model_ir_ui_view
+msgid "View"
+msgstr "Görüntüle"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_ir_actions_act_window_view__view_mode
+#: model:ir.model.fields,field_description:hr_puantaj.field_ir_ui_view__type
+msgid "View Type"
+msgstr "Görünüm Türü"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/image_webcam.xml:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam.xml:0
+#: code:addons/hr_puantaj/static/src/xml/image_webcam.xml:0
+#: code:addons/hr_puantaj/static/src/xml/image_webcam.xml:0
+#, python-format
+msgid "Webcam"
+msgstr "Web Kamerası"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_menu.xml:0
+#, python-format
+msgid "Work Description"
+msgstr "İş Açıklaması"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_out_work
+msgid "Work Done"
+msgstr "Yapılan İş"
+
+#. module: hr_puantaj
+#: model:ir.model.fields,field_description:hr_puantaj.field_hr_attendance__check_in_work
+msgid "Work To Do"
+msgstr "Yapılacak İş"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.js:0
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.js:0
+#, python-format
+msgid "Wrong Pin"
+msgstr "Yanlış Pin"
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.js:0
+#, python-format
+msgid "You haven't entered any of the geofence zones."
+msgstr "Herhangi bir proje içinde değilsiniz."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/attendance_recognition_dialog.js:0
+#: code:addons/hr_puantaj/static/src/js/attendance_webcam_dialog.js:0
+#: code:addons/hr_puantaj/static/src/js/image_webcam_dialog.js:0
+#, python-format
+msgid ""
+"https Failed: Warning! WEBCAM MAY ONLY WORKS WITH HTTPS CONNECTIONS. So your"
+" Odoo instance must be configured in https mode."
+msgstr ""
+"https Hatası: Uyarı! WEB Kamerası yanlızca HTTPS Bağlantıda çalışır. Bu nedenle"
+" Odoo Kurulumu HTTPS olarak ayarlanmalıdır."
+
+#. module: hr_puantaj
+#. odoo-javascript
+#: code:addons/hr_puantaj/static/src/js/public_kiosk_app.xml:0
+#: code:addons/hr_puantaj/static/src/xml/attendance.xml:0
+#, python-format
+msgid "or"
+msgstr "or"
+
+
+
+#. module: hr_attendance
+#. odoo-javascript
+#: code:addons/hr_attendance/static/src/components/attendance_menu/attendance_menu.xml:0
+#, python-format
+msgid "Total today"
+msgstr "Bugün Toplam"
+
+#. module: hr_attendance
+#. odoo-javascript
+#: code:addons/hr_attendance/static/src/components/attendance_menu/attendance_menu.xml:0
+#: code:addons/hr_attendance/static/src/components/attendance_menu/attendance_menu.xml:0
+#, python-format
+msgid "Check in"
+msgstr "Giriş"
+
+#. module: hr_attendance
+#. odoo-javascript
+#: code:addons/hr_attendance/static/src/components/attendance_menu/attendance_menu.xml:0
+#: code:addons/hr_attendance/static/src/components/attendance_menu/attendance_menu.xml:0
+#, python-format
+msgid "Check out"
+msgstr "Çıkış"

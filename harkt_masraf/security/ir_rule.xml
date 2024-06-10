@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_masraf_admin" model="res.groups">
+        <field name="name">Para/Masraf - Admin</field>
+    </record>
+    <record id="ir_rule_harkt_para_talebi_gorme" model="ir.rule">
+        <field name="name">Çalışan Para Talebi Görme Kuralı</field>
+        <field name="model_id" ref="model_harkt_para_talep"/>
+        <field name="domain_force">['|',
+                ('message_partner_ids','child_of',user.partner_id.id),
+                ('create_uid','=',user.id)
+            ]</field>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="False"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="ir_rule_harkt_masraf_gorme" model="ir.rule">
+        <field name="name">Çalışan Masraf Görme Kuralı</field>
+        <field name="model_id" ref="model_harkt_masraf"/>
+        <field name="domain_force">['|',
+                ('message_partner_ids','child_of',user.partner_id.id),
+                ('create_uid','=',user.id)
+            ]</field>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="False"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="ir_rule_harkt_para_talebi_admin_gorme" model="ir.rule">
+        <field name="name">Admin Para Talebi Görme Kuralı</field>
+        <field name="model_id" ref="model_harkt_para_talep"/>
+        <field name="domain_force">[]</field>
+        <field name="groups" eval="[(4, ref('harkt_masraf.group_masraf_admin'))]"/>
+    </record>
+    <record id="ir_rule_harkt_masraf_admin_gorme" model="ir.rule">
+        <field name="name">Admin Masraf Görme Kuralı</field>
+        <field name="model_id" ref="model_harkt_masraf"/>
+        <field name="domain_force">[]</field>
+        <field name="groups" eval="[(4, ref('harkt_masraf.group_masraf_admin'))]"/>
+    </record>
+</odoo>

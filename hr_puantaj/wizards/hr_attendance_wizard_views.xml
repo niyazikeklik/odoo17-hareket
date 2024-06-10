@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_work_entry_wizard_view_form" model="ir.ui.view">
+            <field name="name">hr.work.entry.wizard.form</field>
+            <field name="model">hr.work.entry</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    <!-- OVVERIDE CLOSE BUTON -->
+                        <button name="close" type="object" string="Close" class="oe_link" special="cancel"/>
+                    </header>
+                    <sheet>
+                        <group id="general" string="Please Fill and Confirm the Form Below">
+                            <field name="work_entry_type_id"/>
+                            <field name="project_id"/>
+                            <field name="activity_id"/>
+                            <field name="giris_sehir" string="Lokasyon" readonly="1"/>
+                            <field name="yapilan_is"/>
+                            <field name="date_start"/>
+                            <field name="date_stop"/>
+                            <field name="duration"/>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="parent_id"/>
+                        </group>
+                         <notebook>
+                            <page name="giris_cikis" string="In Outs2">
+                                <field name="hr_attendance_ids">
+                                    <tree>
+                                        <field name="check_in"/>
+                                        <field name="check_out"/>
+                                        <field name="check_in_work_type_id"/>
+                                        <field name="in_city" optional="show"/>
+                                        <field name="out_city" optional="show"/>
+                                        <field name="check_out_project_id" optional="show"/>
+                                        <field name="check_out_work" optional="show"/>
+                                    </tree>
+                                </field>
+                            </page>
+                             <page name="res_montaj" string="Res Montage">
+                                <field name="res_montaj_ids">
+                                    <tree>
+                                        <field name="work_entry_id"/>
+                                        <field name="res_montaj_tipi_id"/>
+                                        <field name="tirbun_no"/>
+                                        <field name="aciklama"/>
+                                        <field name="toplam_saat" widget="float_time"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer>
+                        <button name="action_approve" string="Approve" type="object" class="oe_highlight"></button>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_work_entry_wizard" model="ir.actions.server">
+            <field name="name">Daily Work Entry</field>
+            <field name="model_id" ref="hr_work_entry.model_hr_work_entry"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action=model.action_gunluk_puantaj_goster()</field>
+        </record>
+    </data>
+</odoo>

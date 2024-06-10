@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_tr_mut_kf_filter" model="ir.ui.view">
+            <field name="name">tr.mut.kf.search</field>
+            <field name="model">tr.mut.kf</field>
+            <field name="arch" type="xml">
+                <search string="Tr Kur Farkı">
+                    <field name="partner_id" string="Cari" />
+                    <field name="vat" string="Vkn/Tckn No"/>
+                    <field name="email" string="E-Posta" />
+                    <separator/>
+                    <searchpanel>
+                        <field name="donem_id" string="Dönem" icon="fa-building" enable_counters="1"/>
+                        <field name="state" string="Durum" icon="fa-battery" enable_counters="1"/>
+                        <field name="diger_para_varmi" string="Diğer Para Varmı" icon="fa-money" enable_counters="1"/>
+                    </searchpanel>
+                    <group expand="1" string="Grupla">
+                        <filter name="donem_id" string="Dönem" context="{'group_by': 'donem_id'}"/>
+                        <filter name="state" string="Durum" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        <record model="ir.ui.view" id="tr_mut_kf_tree_view">
+            <field name="name">tr.mut.kf.tree</field>
+            <field name="model">tr.mut.kf</field>
+            <field name="arch" type="xml">
+                <tree string="Cari Kur Farkları Listesi"
+                           decoration-info="state == 'Taslak'"
+                           decoration-warning="state == 'Gönderildi'"
+                           decoration-success="state == 'Kabul Edildi'"
+                           decoration-danger="state == 'Reddedildi'">
+                    <header>
+                        <button name="btn_send_mail_multi" target="new" type="object" string="Kur Farkı Bildir" class="btn btn-primary"  icon="fa-solid fa-envelope"/>
+                        <button name="action_tekrar_hesapla" target="new" type="object" string="IFS'den Yenile" class="btn btn-secondary"  icon="fa-solid fa-calculator"/>
+                        <button name="action_open_ssrs_extre" target="new" type="object" string="Ekstre Excel" class="btn btn-secondary"  icon="fa-solid fa-file"/>
+                    </header>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'Taslak'"
+                           decoration-warning="state == 'Gönderildi'"
+                           decoration-success="state == 'Kabul Edildi'"
+                           decoration-danger="state == 'Reddedildi'"/>
+                    <field name="state" optional="hide"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="donem_id" optional="hide"/>
+                    <field name="tarih"/>
+                    <field name="partner_id"/>
+                    <field name="vat" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="kur_farki"/>
+                    <field name="ilk_ekstre_tarihi"/>
+                    <field name="bakiye_tl" sum="Bakiye TL"/>
+                    <field name="bakiye_usd" sum="Bakiye USD"/>
+                    <field name="bakiye_eur" sum="Bakiye EUR"/>
+                    <field name="diger_para" sum="Diğer Para"/>
+                    <field name="diger_para_varmi" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tr_mut_kf_form_view">
+            <field name="name">tr.mut.kf.form</field>
+            <field name="model">tr.mut.kf</field>
+            <field name="arch" type="xml">
+                <form string="Kur Farkı">
+                    <header>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                        <button name="btn_send_mail" string="Kur Farkı Bildir" type="object" class="btn btn-primary"/>
+                        <button name="action_yanit_sifirla" string="Yanıt Sıfırla" type="object" class="btn btn-secondary"/>
+                        <button name="action_tekrar_hesapla" string="IFS'den Yenile" type="object" class="btn btn-secondary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                            <field name="donem_id" optional="hide"/>
+                            <field name="tarih"/>
+                            <field name="partner_id"/>
+                            <field name="vat" optional="show"/>
+                            <field name="email" optional="show"/>
+                            <field name="kur_farki"/>
+                            <field name="ilk_ekstre_tarihi"/>
+                            <field name="bakiye_tl"/>
+                            <field name="bakiye_usd"/>
+                            <field name="bakiye_eur"/>
+                            <field name="diger_para"/>
+                            <field name="red_aciklama"/>
+                            <field name="survey_input_id" groups="base.group_system" />
+                            <field name="survey_start_url" widget="url"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="action_tr_mut_kf" model="ir.actions.act_window">
+            <field name="name">Kur Farkı Bildirim Listesi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tr.mut.kf</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"></p>
+            </field>
+        </record>
+    </data>
+</odoo>

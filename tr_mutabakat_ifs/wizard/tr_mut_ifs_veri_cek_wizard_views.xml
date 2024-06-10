@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tr_mut_ifs_veri_cek_wizard_view_form" model="ir.ui.view">
+            <field name="name">tr.mut.ifs.veri.cek.wizard.view.form</field>
+            <field name="model">tr.mut.ifs.veri.cek.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group id="info" string="Aşağıdaki bilgileri doldurun daha sonra hangi listeyi çekmek isterseniz ilgili butona basınız.">
+                            <field name="mut_tarih"/>
+                            <field name="mut_vkn_tckn"/>
+                            <field name="mut_hareket_goren"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_mutabakat" string="Cari Mutabakatları Oluştur" type="object" class="oe_highlight"/>
+                        <button name="action_kur_farki" string="Kur Farklarını Oluştur" type="object" class="oe_highlight"/>
+                        <button name="action_kdv2" string="KDV2 Listesi Oluştur" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="tr_mut_ifs_veri_cek_wizard_action" model="ir.actions.act_window">
+            <field name="name">IFS'den Veri Çek</field>
+            <field name="res_model">tr.mut.ifs.veri.cek.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

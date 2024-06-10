@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_tr_mut" model="res.groups">
+            <field name="name">E-Mutabakat</field>
+        </record>
+    </data>
+</odoo>

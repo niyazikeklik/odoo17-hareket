@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="ir.cron" id="ir_cron_isten_ayrilanlari_pasif_yap">
+        <field name="name">İşten Ayrılanları Pasif Yap</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="doall" eval="False" />
+        <field
+            name="model_id"
+            ref="model_tr_company"
+        />
+        <field name="code">model._hr_departure_integration()</field>
+    </record>
+    <record model="ir.cron" id="ir_cron_kullanici_ve_calisan_entegrasyonu">
+        <field name="name">Kullanıcı ve Çalışan entegrasyonu</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="doall" eval="False" />
+        <field
+            name="model_id"
+            ref="model_tr_company"
+        />
+        <field name="code">try:
+    model._user_and_employee_integration('01','%')
+except Exception as ex:
+    print(ex)
+
+try:
+    model._user_and_employee_integration('04','%')
+except Exception as ex:
+    print(ex)
+
+try:
+    model._create_user_for_employee('01')
+except Exception as ex:
+    print(ex)
+
+try:
+    model._create_user_for_employee('04')
+except Exception as ex:
+    print(ex)</field>
+    </record>
+</odoo>

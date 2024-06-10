@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+    <record id="view_sas_onay_tarihce_tree" model="ir.ui.view">
+        <field name="name">sas.onay.tarihce.tree</field>
+        <field name="model">sas.onay.tarihce</field>
+        <field name="arch" type="xml">
+            <tree string="Onayı Beklenen Satınalma Siparişleri" sample="1" create="False" delete="False" duplicate="False">
+                <field name="sas_no"/>
+                <field name="aciklama"/>
+                <field name="sas_tarihi"/>
+                <field name="tutar"/>
+                <field name="para_birimi"/>
+                <field name="birinci_onaylayan"/>
+                <field name="ikinci_onaylayan"/>
+                <field name="ucuncu_onaylayan"/>
+                <field name="malzemeler"/>
+                <field name="son_onaylayici"/>
+                <field name="durum"/>
+                <field name="grup"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_sas_onay_tarihce_form" model="ir.ui.view">
+        <field name="name">sas.onay.tarihce.form</field>
+        <field name="model">sas.onay.tarihce</field>
+        <field name="arch" type="xml">
+            <form string="Onayı Beklenen Satınalma Siparişleri" sample="1" create="False" delete="False" duplicate="False" >
+                <group>
+                    <field name="sas_no" readonly="1"/>
+                    <field name="aciklama" readonly="1"/>
+                    <field name="sas_tarihi" readonly="1"/>
+                    <field name="tutar" readonly="1"/>
+                    <field name="para_birimi" readonly="1"/>
+                    <field name="birinci_onaylayan" readonly="1"/>
+                    <field name="ikinci_onaylayan" readonly="1"/>
+                    <field name="ucuncu_onaylayan" readonly="1"/>
+                    <field name="malzemeler" readonly="1"/>
+                    <field name="son_onaylayici" readonly="1"/>
+                    <field name="durum" readonly="1"/>
+                    <field name="grup" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

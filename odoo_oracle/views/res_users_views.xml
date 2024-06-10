@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_users_ora_inherit_form_simple_modif" model="ir.ui.view">
+            <field name="name">res.users.form.ora.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="after">
+                    <field name="oracle_username"/>
+                    <field name="oracle_password" password="True"/>
+                    <button name="action_test" type="object" string="IFS Bağlantı Testi"></button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

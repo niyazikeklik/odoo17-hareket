@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_eportal_search" model="ir.ui.view">
+            <field name="name">hr.employee.eportal.search</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <filter name="group_manager" position="after">
+                    <filter name="group_tr_company" string="Grup Şirketi" domain="[]" context="{'group_by': 'tr_company_id'}"/>
+                </filter>
+                <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="tr_company_id" icon="fa-building" enable_counters="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_employee_form_inherited_eportal" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="before">
+                     <field name="tr_company_id"/>
+                </xpath>
+                <div id="o_work_employee_main" position="after">
+                    <div id="o_employee_middle_little" width="50%">
+                        <group>
+                            <field name="date_from"></field>
+                            <field name="start_date_on_workplace"></field>
+                            <field name="date_until"></field>
+                            <field name="emp_no"></field>
+                            <field name="allocated_leave_days"></field>
+                            <field name="used_leave_days"></field>
+                            <field name="rest_leave_days"></field>
+                            <field name="leave_allocation_date"></field>
+                            <field name="emp_cat"></field>
+                        </group>
+                    </div>
+                </div>
+                <xpath expr="//page[@name='public']" position="after">
+                     <page name="page_annual_leave_sum" string="Yıllık İzin Özeti">
+                         <field name="annual_leave_summaries">
+                             <tree>
+                                 <field name="year" widget="char"></field>
+                                 <field name="earned"></field>
+                                 <field name="used"></field>
+                                 <field name="rest"></field>
+                             </tree>
+                         </field>
+                     </page>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_employee_eportal_tree" model="ir.ui.view">
+            <field name="name">hr.employee.eportal.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="before">
+                     <field name="tr_company_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="act_employee_from_tr_company" model="ir.actions.act_window">
+            <field name="name">Personeller</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <field name="search_view_id" ref="hr.view_employee_filter"/>
+            <field name="context">{
+                "searchpanel_default_tr_company_id": active_id,
+                "default_tr_company_id": active_id}
+            </field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Yeni bir personel ekle
+              </p>
+            </field>
+        </record>
+
+        <record id="act_employee_calendar" model="ir.actions.act_window">
+            <field name="name">Personeller</field>
+            <field name="res_model">hr.employee.public</field>
+            <field name="view_mode">calendar</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                ...
+              </p>
+            </field>
+        </record>
+        <record id="hr_employee_public_view_form_inherited_eportal" model="ir.ui.view">
+            <field name="name">hr.employee.public.form.inherit.eportal</field>
+            <field name="model">hr.employee.public</field>
+            <field name="inherit_id" ref="hr.hr_employee_public_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='mobile_phone']" position="replace">
+                        <field name="mobile_phone" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

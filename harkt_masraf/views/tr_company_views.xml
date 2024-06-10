@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_tr_company_harkt_masraf" model="ir.ui.view">
+            <field name="name">tr.company.form.harkt.masraf</field>
+            <field name="model">tr.company</field>
+            <field name="inherit_id" ref="tr_common.view_tr_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='note']" position="after">
+                    <field name="para_talebi" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

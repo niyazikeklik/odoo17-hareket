@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_tr_mut_filter" model="ir.ui.view">
+            <field name="name">tr.mut.search</field>
+            <field name="model">tr.mut</field>
+            <field name="arch" type="xml">
+                <search string="Tr Mutabakat">
+                    <field name="partner_id" string="Cari" />
+                    <field name="vat" string="Vkn/Tckn No"/>
+                    <field name="email" string="E-Posta" />
+                    <separator/>
+                    <searchpanel>
+                        <field name="donem_id" string="Dönem" icon="fa-building" enable_counters="1"/>
+                        <field name="state" string="Durum" icon="fa-battery" enable_counters="1"/>
+                        <field name="diger_para_varmi" string="Diğer Para Varmı" icon="fa-money" enable_counters="1"/>
+                    </searchpanel>
+                    <group expand="1" string="Grupla">
+                        <filter name="donem_id" string="Dönem" context="{'group_by': 'donem_id'}"/>
+                        <filter name="state" string="Durum" context="{'group_by': 'state'}"/>
+
+                    </group>
+                </search>
+             </field>
+        </record>
+        <record model="ir.ui.view" id="tr_mut_tree_view">
+            <field name="name">tr.mut.tree</field>
+            <field name="model">tr.mut</field>
+            <field name="arch" type="xml">
+                <tree string="Cari Mutabakat Listesi"
+                           decoration-info="state == 'Taslak'"
+                           decoration-warning="state == 'Gönderildi'"
+                           decoration-success="state == 'Kabul Edildi'"
+                           decoration-danger="state == 'Reddedildi'">
+                    <header>
+                        <button name="btn_send_mail_multi" target="new" type="object" string="Mutabakat Gönder" class="btn btn-primary"  icon="fa-solid fa-envelope"/>
+                    </header>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'Taslak'"
+                           decoration-warning="state == 'Gönderildi'"
+                           decoration-success="state == 'Kabul Edildi'"
+                           decoration-danger="state == 'Reddedildi'"/>
+                    <field name="state" optional="hide"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="donem_id" optional="hide"/>
+                    <field name="tarih"/>
+                    <field name="partner_id"/>
+                    <field name="vat" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="bakiye_tl" sum="Bakiye TL"/>
+                    <field name="bakiye_usd" sum="Bakiye USD"/>
+                    <field name="bakiye_eur" sum="Bakiye EUR"/>
+                    <field name="diger_para" sum="Diğer Para"/>
+                    <field name="red_aciklama"/>
+                    <field name="diger_para_varmi" invisible="1"/>
+                    <field name="message_attachment_count" string="Ek #"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tr_mut_form_view">
+            <field name="name">tr.mut.form</field>
+            <field name="model">tr.mut</field>
+            <field name="arch" type="xml">
+                <form string="Cari Mutabakat">
+                    <header>
+                        <button name="btn_send_mail" string="Mutabakat Gönder" type="object" class="btn btn-primary"/>
+                        <button name="action_yanit_sifirla" string="Yanıt Sıfırla" type="object" class="btn btn-secondary"/>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                            <field name="donem_id" optional="hide"/>
+                            <field name="tarih"/>
+                            <field name="partner_id"/>
+                            <field name="vat" optional="show"/>
+                            <field name="email" optional="show"/>
+                            <field name="bakiye_tl"/>
+                            <field name="bakiye_usd"/>
+                            <field name="bakiye_eur"/>
+                            <field name="diger_para"/>
+                            <field name="survey_input_id" groups="base.group_system" />
+                            <field name="survey_start_url" widget="url"/>
+                            <field name="red_aciklama" readonly="1"/>
+
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="action_tr_mut" model="ir.actions.act_window">
+            <field name="name">Cari Mutabakat Listesi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tr.mut</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"></p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

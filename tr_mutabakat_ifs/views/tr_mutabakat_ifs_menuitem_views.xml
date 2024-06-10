@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_tr_mut_kf"
+            name="Kur Farkları"
+            parent="tr_mutabakat.menu_tr_mutabakat_root"
+            action="action_tr_mut_kf"
+            sequence="20"/>
+        <menuitem
+            id="menu_tr_mut_kdv2"
+            name="KDV2 Bildirim"
+            parent="tr_mutabakat.menu_tr_mutabakat_root"
+            action="action_tr_mut_kdv2"
+            sequence="30"/>
+        <menuitem
+            id="menu_tr_mut_veri_cekme"
+            name="IFS Veri Çekme"
+            parent="tr_mutabakat.menu_tr_mutabakat_root"
+            action="tr_mut_ifs_veri_cek_wizard_action"
+            sequence="35"/>
+
+
+    </data>
+</odoo>

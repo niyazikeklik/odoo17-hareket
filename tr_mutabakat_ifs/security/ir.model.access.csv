@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tr_mut_kf,tr_mut_kf_group,model_tr_mut_kf,tr_mutabakat.group_tr_mut,1,1,1,1
+access_tr_mut_kdv2,tr_mut_kdv2_group,model_tr_mut_kdv2,tr_mutabakat.group_tr_mut,1,1,1,1
+access_tr_mut_ifs_veri_cek_wizard,tr_mut_ifs_veri_cek_wizard_group,model_tr_mut_ifs_veri_cek_wizard,tr_mutabakat.group_tr_mut,1,1,1,1

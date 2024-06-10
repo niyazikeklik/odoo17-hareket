@@ -1,0 +1,16 @@
+<odoo>
+    <record id="survey_question_validation" model="ir.ui.view">
+        <field name="name">survey.question.validation</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='answers']" position="inside">
+                <group>
+                    <field name="mm_attachment_ids" widget="many2many_binary"
+                           colspan="2" string="Select Files" nolabel="1"
+                           invisible = "question_type not in['file']"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

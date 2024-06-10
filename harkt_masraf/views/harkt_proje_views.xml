@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_harkt_proje_filter" model="ir.ui.view">
+            <field name="name">harkt.proje.search</field>
+            <field name="model">harkt.proje</field>
+            <field name="arch" type="xml">
+                <search string="Proje">
+                    <field name="name" string="Ara" filter_domain="['|','|',('code', 'ilike', self),('name','ilike', self),('state', 'ilike', self)]"/>
+                </search>
+             </field>
+        </record>
+        <record id="view_harkt_proje_form" model="ir.ui.view">
+            <field name="name">harkt.proje.form</field>
+            <field name="model">harkt.proje</field>
+            <field name="arch" type="xml">
+                <form string="Proje" create="False" delete="False">
+                    <sheet>
+                        <group col="3">
+                            <field name="tr_company_id"/>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="state"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_harkt_proje_tree" model="ir.ui.view">
+            <field name="name">harkt.proje.tree</field>
+            <field name="model">harkt.proje</field>
+            <field name="arch" type="xml">
+                <tree string="Projeler" sample="1" create="False" delete="False">
+                    <field name="tr_company_id"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="harkt_proje_action" model="ir.actions.act_window">
+            <field name="name">Proje</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">harkt.proje</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Yeni bir proje oluştur
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

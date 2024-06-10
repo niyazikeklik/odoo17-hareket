@@ -1,0 +1,235 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tr_common
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-08 12:46+0000\n"
+"PO-Revision-Date: 2024-04-08 12:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tr_common
+#: model_terms:ir.ui.view,arch_db:tr_common.tr_company_view_kanban
+msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
+msgstr "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Yönet\" title=\"Yönet\"/>"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_needaction
+msgid "Action Needed"
+msgstr "Eylem gerekli"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__active
+msgid "Active"
+msgstr "Aktif"
+
+#. module: tr_common
+#: model_terms:ir.actions.act_window,help:tr_common.tr_company_kanban_action
+#: model_terms:ir.actions.act_window,help:tr_common.tr_company_tree_action
+msgid "Add a new group company"
+msgstr "Yeni bir grup şirketi ekle"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__address
+msgid "Address"
+msgstr "Adres"
+
+#. module: tr_common
+#: model_terms:ir.ui.view,arch_db:tr_common.view_tr_company_filter
+msgid "Archived"
+msgstr "Arşivlendi"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_attachment_count
+msgid "Attachment Count"
+msgstr "Ek Sayısı"
+
+#. module: tr_common
+#: model_terms:ir.ui.view,arch_db:tr_common.view_tr_company_tree
+msgid "Companies"
+msgstr "Şirketler"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__company_id
+msgid "Company"
+msgstr "Şirket"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__create_uid
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__create_date
+msgid "Created on"
+msgstr "Oluşturma"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__display_name
+msgid "Display Name"
+msgstr "Görünen Ad"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__fax
+msgid "Fax"
+msgstr "Faks"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_follower_ids
+msgid "Followers"
+msgstr "Takipçiler"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Takipçiler (Kontaklar)"
+
+#. module: tr_common
+#: model:ir.actions.act_window,name:tr_common.tr_company_kanban_action
+#: model:ir.actions.act_window,name:tr_common.tr_company_tree_action
+msgid "Group Companies"
+msgstr "Grup Şirketleri"
+
+#. module: tr_common
+#: model:ir.model,name:tr_common.model_tr_company
+#: model_terms:ir.ui.view,arch_db:tr_common.view_tr_company_form
+msgid "Group Company"
+msgstr "Grup Şirketi"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__code
+msgid "Group Company Code"
+msgstr "Grup Şirketi Kodu"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__name
+msgid "Group Company Name"
+msgstr "Grup Şirketi Adı"
+
+#. module: tr_common
+#: model_terms:ir.ui.view,arch_db:tr_common.view_tr_company_filter
+msgid "Grup Şirketi Adı"
+msgstr ""
+
+#. module: tr_common
+#: model_terms:ir.ui.view,arch_db:tr_common.view_tr_company_filter
+msgid "Grup Şirketleri"
+msgstr ""
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__has_message
+msgid "Has Message"
+msgstr "Mesaj Var mı?"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__id
+msgid "ID"
+msgstr ""
+
+#. module: tr_common
+#: model:ir.model.fields,help:tr_common.field_tr_company__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "İşaretlendiyse yeni mesajlar dikkatinize sunulur."
+
+#. module: tr_common
+#: model:ir.model.fields,help:tr_common.field_tr_company__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "İşaretlendiyse bazı mesajlarda teslimat hatası vardır."
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_is_follower
+msgid "Is Follower"
+msgstr "Takipçi Mi?"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__write_uid
+msgid "Last Updated by"
+msgstr "Son Güncelleyen"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__write_date
+msgid "Last Updated on"
+msgstr "Son Güncelleme"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__logo
+msgid "Logo"
+msgstr ""
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_has_error
+msgid "Message Delivery error"
+msgstr "Mesaj teslim hatası"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_ids
+msgid "Messages"
+msgstr "Mesajlar"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__note
+msgid "Notes"
+msgstr "Notlar"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Eylem sayısı"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__message_has_error_counter
+msgid "Number of errors"
+msgstr "Hata sayısı"
+
+#. module: tr_common
+#: model:ir.model.fields,help:tr_common.field_tr_company__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Eylem gereken mesaj sayısı"
+
+#. module: tr_common
+#: model:ir.model.fields,help:tr_common.field_tr_company__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Teslimat hatası olan mesaj sayısı"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__official_name
+msgid "Official Name"
+msgstr "Resmi Ad"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__phone
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__tax_number
+msgid "Tax Number"
+msgstr "Vergi No"
+
+#. module: tr_common
+#: model_terms:ir.ui.view,arch_db:tr_common.view_tr_company_filter
+msgid "Unread Messages"
+msgstr "Okunmayan Mesajlar"
+
+#. module: tr_common
+#: model:ir.model.fields,field_description:tr_common.field_tr_company__website
+msgid "Website"
+msgstr "Websitesi"
+
+#. module: tr_common
+#: model_terms:ir.actions.act_window,help:tr_common.tr_company_kanban_action
+#: model_terms:ir.actions.act_window,help:tr_common.tr_company_tree_action
+msgid "You can add new organizations with group companies..."
+msgstr "Grup şirketleri ile yeni organizasyonlar ekleyebilirsiniz"
+
+#. module: tr_common
+#: model_terms:ir.ui.view,arch_db:tr_common.view_tr_company_form
+msgid "örn. Şirketim A.Ş."
+msgstr ""

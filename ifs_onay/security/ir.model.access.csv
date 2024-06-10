@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sas_baslik,sas_baslik_group,model_sas_baslik,base.group_user,1,1,1,1
+access_sas_onay,sas_onay_group,model_sas_onay,base.group_user,1,1,1,1
+access_sas_satir,sas_satir_group,model_sas_satir,base.group_user,1,1,1,1
+access_sas_dosya,sas_dosya_group,model_sas_dosya,base.group_user,1,1,1,1
+access_sas_baslik_reject_wizard,sas_baslik_reject_wizard_group,model_sas_baslik_reject_wizard,base.group_user,1,1,1,1
+access_sas_red_kpdu,sas_red_kodu_group,model_sas_red_kodu,base.group_user,1,1,1,1
+access_res_users_change,sas_res_users_change_group,base.model_res_users,base.group_user,1,1,0,0
+access_ir_actions_act_window_view_hrkt,ir_actions_act_window_view_hrkt_group,base.model_ir_actions_act_window_view,base.group_user,1,0,0,0
+access_ir_actions_act_window_hrkt,ir_actions_act_window_hrkt_group,base.model_ir_actions_act_window,base.group_user,1,0,0,0
+access_sas_onay_tarihce,sas_onay_tarihce_group,model_sas_onay_tarihce,base.group_user,1,1,1,1

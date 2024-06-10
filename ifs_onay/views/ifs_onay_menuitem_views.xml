@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_ifs_onay_root"
+            name="IFS Onaylar"
+            web_icon="ifs_onay,static/description/icon.png"
+            sequence="-100"/>
+        <menuitem
+            id="menu_sas_onay"
+            name="Satınalma Sipariş Onayı"
+            parent="menu_ifs_onay_root"
+            action="sas_baslik_action"
+            sequence="10"/>
+        <menuitem
+            id="menu_ifs_onay_ayar"
+            name="Ayarlar"
+            parent="menu_ifs_onay_root"
+            sequence="100"/>
+        <menuitem
+            id="menu_sas_red_kodlari"
+            name="Sas Red Kodları"
+            action="sas_red_kodu_action"
+            parent="menu_ifs_onay_ayar"
+            sequence="10"/>
+
+    </data>
+</odoo>

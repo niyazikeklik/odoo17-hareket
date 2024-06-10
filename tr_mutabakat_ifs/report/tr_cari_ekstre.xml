@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tr_mut_cari_ekstre_print" model="ir.actions.report">
+        <field name="name">Cari Ekstre Yazdır</field>
+        <field name="model">tr.mut</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tr_mutabakat_ifs.cari_ekstre</field>
+        <field name="report_file">tr_mutabakat_ifs.cari_ekstre</field>
+        <field name="print_report_name">'Cari Ekstre Yazdır - %s' % (object.display_name).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_tr_mut"/>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="tr_mut_cari_ekstre_print2" model="ir.actions.report">
+        <field name="name">Cari Ekstre Yazdır</field>
+        <field name="model">tr.mut.kf</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tr_mutabakat_ifs.cari_ekstre_kf</field>
+        <field name="report_file">tr_mutabakat_ifs.cari_ekstre_kf</field>
+        <field name="print_report_name">'Cari Ekstre Yazdır - %s' % (object.display_name).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_tr_mut_kf"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="cari_ekstre">
+        <t t-set="data_report_header_spacing" t-value="10"/>
+        <t t-set="data_report_margin_top" t-value="20"/>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+                    <div class="page">
+                        <table width="100%" style="border-color:white;">
+                            <tr width="100%" height="100%">
+                                <td width="90%">
+                                     <img t-att-src="image_data_uri(doc.company_id.logo)" style="max-height:50pt;max-width:90%" alt="Şirket Logosu"/>
+                                </td>
+                                <td style="padding-bottom: 10px;"><span t-field="doc.tarih" t-options='{"widget": "date","format": "dd.MM.yyyy"}'/></td>
+                            </tr>
+                            <tr width="100%" height="100%">
+                                <td width="100%" colspan="2">
+                                    <p align="center" style="font-size: 24px;font-weight: bold;">CARİ HESAP EKSTRESİ</p>
+                                </td>
+                            </tr>
+                            <tr width="100%" height="100%" border="0">
+                                <td colspan="2"  style="padding-bottom: 20px;align: left;">
+                                    <b><t t-raw="doc.company_id.name"/></b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size: 12px; border-color:white;">
+                            <tr width="100%" height="100%" border="0">
+                                <td width="10%"  >
+                                    <b>Cari Kodu:</b>
+                                </td>
+                                <td width="15%">
+                                    <t t-raw="doc.partner_id.ref"/>
+                                </td>
+                                <td width="10%">
+                                    <b>Vergi No:</b>
+                                </td>
+                                <td width="15%">
+                                    <t t-raw="doc.vat"/>
+                                </td>
+                                <td width="10%">
+                                    <b>Cari Adı:</b>
+                                </td>
+                                <td width="40%">
+                                    <t t-raw="doc.partner_id.name"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" border="0px" valign="top" style="font-size: 10px; vertical-align: top;">
+                        <t t-foreach="dvz_ekstre_rows" t-as="rows">
+                            <t t-set="pb_rows"  t-value="rows['DETAY']"/>
+                            <tr style="font-size: 12px; border: 0pt solid white;background-color:white;">
+                                <th colspan="11"><![CDATA[&nbsp;]]></th>
+                            </tr>
+                            <tr style="font-size: 12px; border: 1pt solid black;background-color:#888888;">
+                                <th width="48%" style="padding-bottom: 10px;padding-left: 4px;padding-top:10px;text-align:left;" colspan="5">
+                                    <t t-esc="rows['DOVIZ']"/> Cari Ekstre
+                                </th>
+                                <th width="26%" style="padding-bottom: 10px;padding-top:10px;text-align:center;" colspan="3">TL</th>
+                                <th width="26%" style="padding-bottom: 10px;padding-top:10px;text-align:center;" colspan="3"><t t-esc="rows['DOVIZ']"/></th>
+                            </tr>
+                            <tr style="font-size: 12px; border-bottom: 1pt solid black;">
+                                <th width="7%" style="padding-bottom: 10px;padding-top:5px;padding-left:4px;">Tarih</th>
+                                <th width="5%" style="padding-bottom: 10px;padding-top:5px;padding-right:2px;">İşlem</th>
+                                <th width="26%" style="padding-bottom: 10px;padding-top:5px;padding-right:2px;">Açıklama</th>
+                                <th width="5%" style="padding-bottom: 10px;padding-top:5px;padding-right:2px;">Döviz</th>
+                                <th width="5%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;padding-right:2px;">Kur</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Borç</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Alacak</th>
+                                <th width="10%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Bakiye</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Borç</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Alacak</th>
+                                <th width="10%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Bakiye</th>
+                            </tr>
+                            <t t-foreach="pb_rows" t-as="row">
+                                <tr>
+                                    <t t-if="row['bold'] == 0">
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['tarih']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['islem']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['aciklama']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['doviz']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-esc="'{0:,.4f}'.format(row['kur'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_bakiye'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_bakiye'])"/></td>
+                                    </t>
+                                    <t t-if="row['bold'] == 1">
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['tarih']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['islem']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['aciklama']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['doviz']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-esc="'{0:,.4f}'.format(row['kur'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;font-weight:bold;font-size:10pt;"><t t-esc="'{0:,.2f}'.format(row['tl_bakiye'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;font-weight:bold;font-size:10pt;"><t t-esc="'{0:,.2f}'.format(row['doviz_bakiye'])"/></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </t>
+                            <tr>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;" colspan="4"></td>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;font-weight:bold;font-size:10pt;" colspan="3">Muhasebe Bakiye TL</td>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;font-weight:bold;font-size:10pt;"><t t-esc="'{0:,.2f}'.format(muh_bakiye_tl)"/></td>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;" colspan="3"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-xs-2 pull-left">
+                                <small>
+                                    <span>Sayfa</span>
+                                    <span class="page" />
+                                    /
+                                    <span class="topage" />
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="cari_ekstre_kf">
+        <t t-set="data_report_header_spacing" t-value="10"/>
+        <t t-set="data_report_margin_top" t-value="20"/>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+                    <div class="page">
+                        <table width="100%" style="border-color:white;">
+                            <tr width="100%" height="100%">
+                                <td width="90%">
+                                     <img t-att-src="image_data_uri(doc.company_id.logo)" style="max-height:50pt;max-width:90%" alt="Şirket Logosu"/>
+                                </td>
+                                <td style="padding-bottom: 10px;"><span t-field="doc.tarih" t-options='{"widget": "date","format": "dd.MM.yyyy"}'/></td>
+                            </tr>
+                            <tr width="100%" height="100%">
+                                <td width="100%" colspan="2">
+                                    <p align="center" style="font-size: 24px;font-weight: bold;">CARİ HESAP EKSTRESİ</p>
+                                </td>
+                            </tr>
+                            <tr width="100%" height="100%" border="0">
+                                <td colspan="2"  style="padding-bottom: 20px;align: left;">
+                                    <b><t t-raw="doc.company_id.name"/></b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size: 12px; border-color:white;">
+                            <tr width="100%" height="100%" border="0">
+                                <td width="10%"  >
+                                    <b>Cari Kodu:</b>
+                                </td>
+                                <td width="15%">
+                                    <t t-raw="doc.partner_id.ref"/>
+                                </td>
+                                <td width="10%">
+                                    <b>Vergi No:</b>
+                                </td>
+                                <td width="15%">
+                                    <t t-raw="doc.vat"/>
+                                </td>
+                                <td width="10%">
+                                    <b>Cari Adı:</b>
+                                </td>
+                                <td width="40%">
+                                    <t t-raw="doc.partner_id.name"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" border="0px" valign="top" style="font-size: 10px; vertical-align: top;">
+                        <t t-foreach="dvz_ekstre_rows" t-as="rows">
+                            <t t-set="pb_rows"  t-value="rows['DETAY']"/>
+                            <tr style="font-size: 12px; border: 0pt solid white;background-color:white;">
+                                <th colspan="11"><![CDATA[&nbsp;]]></th>
+                            </tr>
+                            <tr style="font-size: 12px; border: 1pt solid black;background-color:#888888;">
+                                <th width="48%" style="padding-bottom: 10px;padding-left: 4px;padding-top:10px;text-align:left;" colspan="5">
+                                    <t t-esc="rows['DOVIZ']"/> Cari Ekstre
+                                </th>
+                                <th width="26%" style="padding-bottom: 10px;padding-top:10px;text-align:center;" colspan="3">TL</th>
+                                <th width="26%" style="padding-bottom: 10px;padding-top:10px;text-align:center;" colspan="3"><t t-esc="rows['DOVIZ']"/></th>
+                            </tr>
+                            <tr style="font-size: 12px; border-bottom: 1pt solid black;">
+                                <th width="7%" style="padding-bottom: 10px;padding-top:5px;padding-left:4px;">Tarih</th>
+                                <th width="5%" style="padding-bottom: 10px;padding-top:5px;padding-right:2px;">İşlem</th>
+                                <th width="26%" style="padding-bottom: 10px;padding-top:5px;padding-right:2px;">Açıklama</th>
+                                <th width="5%" style="padding-bottom: 10px;padding-top:5px;padding-right:2px;">Döviz</th>
+                                <th width="5%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;padding-right:2px;">Kur</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Borç</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Alacak</th>
+                                <th width="10%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Bakiye</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Borç</th>
+                                <th width="8%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Alacak</th>
+                                <th width="10%" style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;">Bakiye</th>
+                            </tr>
+                            <t t-foreach="pb_rows" t-as="row">
+                                <tr>
+                                    <t t-if="row['bold'] == 0">
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['tarih']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['islem']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['aciklama']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['doviz']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-esc="'{0:,.4f}'.format(row['kur'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_bakiye'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_bakiye'])"/></td>
+                                    </t>
+                                    <t t-if="row['bold'] == 1">
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['tarih']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['islem']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['aciklama']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-raw="row['doviz']"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;"><t t-esc="'{0:,.4f}'.format(row['kur'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['tl_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;font-weight:bold;font-size:10pt;"><t t-esc="'{0:,.2f}'.format(row['tl_bakiye'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_borc'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;"><t t-esc="'{0:,.2f}'.format(row['doviz_alacak'])"/></td>
+                                        <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;font-weight:bold;font-size:10pt;"><t t-esc="'{0:,.2f}'.format(row['doviz_bakiye'])"/></td>
+                                    </t>
+                                </tr>
+
+                            </t>
+                        </t>
+                            <tr>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;" colspan="4"></td>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-left:4px;font-weight:bold;font-size:10pt;" colspan="3">Muhasebe Bakiye TL</td>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;font-weight:bold;font-size:10pt;"><t t-esc="'{0:,.2f}'.format(muh_bakiye_tl)"/></td>
+                                <td style="padding-bottom: 10px;padding-top:5px;padding-right:4px;text-align:right;" colspan="3"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-xs-2 pull-left">
+                                <small>
+                                    <span>Sayfa</span>
+                                    <span class="page" />
+                                    /
+                                    <span class="topage" />
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

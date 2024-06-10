@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_res_montaj_tipi_filter" model="ir.ui.view">
+            <field name="name">hr.res.montaj.tipi.search</field>
+            <field name="model">hr.res.montaj.tipi</field>
+            <field name="arch" type="xml">
+                <search string="Res Montaj Tipi">
+                    <field name="name" string="Ara" filter_domain="['|','|',('code', 'ilike', self),('name','ilike', self)]"/>
+                </search>
+             </field>
+        </record>
+        <record id="view_hr_res_montaj_tipi_form" model="ir.ui.view">
+            <field name="name">hr.res.montaj.tipi.form</field>
+            <field name="model">hr.res.montaj.tipi</field>
+            <field name="arch" type="xml">
+                <form string="Res Montaj Tipi">
+                    <sheet>
+                        <group col="3">
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_res_montaj_tipi_tree" model="ir.ui.view">
+            <field name="name">hr.res.montaj.tipi.tree</field>
+            <field name="model">hr.res.montaj.tipi</field>
+            <field name="arch" type="xml">
+                <tree string="Res Montaj Tipleri" sample="1">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="hr_res_montaj_tipi_action" model="ir.actions.act_window">
+            <field name="name">Res Montaj Tipi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.res.montaj.tipi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Yeni bir Res Montaj Tipi oluştur
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

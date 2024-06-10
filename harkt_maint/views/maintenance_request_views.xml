@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_maintenance_request_form_inherited_harkt">
+        <field name="name">maintenance.request.form.inherited.harkt</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Other Information">
+                    <field name="planned_lower_engine"/>
+                    <field name="planned_upper_engine"/>
+                    <field name="planned_km"/>
+                    <field name="actual_lower_engine"/>
+                    <field name="actual_upper_engine"/>
+                    <field name="actual_km"/>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_maintenance_request_tree_inherited_harkt">
+        <field name="name">maintenance.request.tree.inherited.harkt</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="after">
+                <field name="planned_lower_engine"/>
+                <field name="planned_upper_engine"/>
+                <field name="planned_km"/>
+                <field name="actual_lower_engine"/>
+                <field name="actual_upper_engine"/>
+                <field name="actual_km"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

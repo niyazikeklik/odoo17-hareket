@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record id="mail_act_sas_onay" model="mail.activity.type">
+            <field name="name">Sas Onayı</field>
+            <field name="icon">fa-clipboard-list</field>
+            <field name="res_model">sas.baslik</field>
+        </record>
+    </data>
+</odoo>

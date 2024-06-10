@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_harkt_aktivite_filter" model="ir.ui.view">
+            <field name="name">harkt.aktivite.search</field>
+            <field name="model">harkt.aktivite</field>
+            <field name="arch" type="xml">
+                <search string="Aktivite">
+                    <field name="activity_name" string="Ara" filter_domain="['|','|','|',('activity_name', 'ilike', self),('activity_seq','ilike', self),('activity_no','ilike', self),('project_id','ilike', self)]"/>
+                </search>
+             </field>
+        </record>
+        <record id="view_harkt_aktivite_form" model="ir.ui.view">
+            <field name="name">harkt.aktivite.form</field>
+            <field name="model">harkt.aktivite</field>
+            <field name="arch" type="xml">
+                <form string="Aktivite" create="False" delete="False">
+                    <sheet>
+                        <group col="3">
+                            <field name="project_id" readonly="1"/>
+                            <field name="activity_seq" readonly="1"/>
+                            <field name="activity_no" readonly="1"/>
+                            <field name="sub_project_no" readonly="1"/>
+                            <field name="activity_name" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_harkt_aktivite_tree" model="ir.ui.view">
+            <field name="name">harkt.aktivite.tree</field>
+            <field name="model">harkt.aktivite</field>
+            <field name="arch" type="xml">
+                <tree string="Aktiviteler" sample="1" create="False" delete="False">
+                    <field name="project_id" readonly="1"/>
+                    <field name="activity_seq" readonly="1"/>
+                    <field name="activity_no" readonly="1"/>
+                    <field name="sub_project_no" readonly="1"/>
+                    <field name="activity_name" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="harkt_aktivite_action" model="ir.actions.act_window">
+            <field name="name">Aktivite</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">harkt.aktivite</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Yeni bir aktivite oluştur
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

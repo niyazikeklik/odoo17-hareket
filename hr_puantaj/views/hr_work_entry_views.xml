@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_work_entry_view_tree_inherit_puantaj" model="ir.ui.view">
+        <field name="name">hr.work.entry.tree.inherit.puantaj</field>
+        <field name="model">hr.work.entry</field>
+        <field name="inherit_id" ref="hr_work_entry.hr_work_entry_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_stop']" position="after">
+                 <field name="giris_enlem" optional="hide"/>
+                 <field name="giris_boylam" optional="hide"/>
+                 <field name="cikis_enlem" optional="hide"/>
+                 <field name="cikis_boylam" optional="hide"/>
+                 <field name="giris_adres" optional="hide"/>
+                 <field name="cikis_adres" optional="hide"/>
+                 <field name="giris_sehir" optional="show"/>
+                 <field name="cikis_sehir" optional="show"/>
+                 <field name="project_id" optional="show"/>
+                 <field name="activity_id" optional="show"/>
+                 <field name="yapilan_is" optional="show"/>
+                 <field name="hr_attendance_ids" widget="many2many_tags" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+     <record id="hr_work_entry_view_form_inherit_puantaj" model="ir.ui.view">
+        <field name="name">hr.work.entry.form.inherit.puantaj</field>
+        <field name="model">hr.work.entry</field>
+        <field name="inherit_id" ref="hr_work_entry.hr_work_entry_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_entry_type_id']" position="after">
+                <field name="giris_enlem"/>
+                <field name="giris_boylam"/>
+                <field name="giris_adres"/>
+                <field name="giris_sehir"/>
+                <field name="project_id"/>
+                <field name="activity_id"/>
+                <field name="yapilan_is"/>
+                <field name="hr_attendance_ids" widget="many2many_tags"/>
+            </xpath>
+            <xpath expr="//field[@name='date_stop']" position="after">
+                <field name="cikis_enlem"/>
+                <field name="cikis_boylam"/>
+                <field name="cikis_adres"/>
+                <field name="cikis_sehir"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page name="giris_cikis" string="Giriş Çıkışlar">
+                        <field name="hr_attendance_ids">
+                            <tree>
+                                <field name="check_in"/>
+                                <field name="check_out"/>
+                                <field name="in_address" optional="show"/>
+                                <field name="out_address" optional="show"/>
+                                <field name="check_in_geofence_ids" optional="show" widget="many2many_tags"/>
+                                <field name="check_out_geofence_ids" optional="show" widget="many2many_tags"/>
+                                <field name="check_out_work" optional="show"/>
+                                <button string="Detaylar" type="object" name="action_details" class="btn btn-info"></button>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

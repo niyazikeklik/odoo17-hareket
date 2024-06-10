@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<odoo>
+     <data>
+           <record id="tr_mutabakat_ifs_olustur" model="ir.cron">
+               <field name="interval_type">months</field>
+               <field name="name">IFS'den Cari Mutabakat Oluştur</field>
+               <field name="model_id" ref="model_tr_mut"/>
+               <field name="type">ir.actions.server</field>
+               <field name="state">code</field>
+               <field name="code">
+for rec in env["res.company"].search([("ifs_sirket_kodu","!=",False)]):
+  model._ifs_cari_mutabakat_getir(rec.ifs_sirket_kodu,False,'%',0)
+               </field>
+               <field name="interval_number">1</field>
+               <field name="numbercall">-1</field>
+               <field name="priority">10</field>
+           </record>
+           <record id="tr_mutabakat_ifs_kf_olustur" model="ir.cron">
+               <field name="interval_type">months</field>
+               <field name="name">IFS'den Kur Farkı Listesi Oluştur</field>
+               <field name="model_id" ref="model_tr_mut_kf"/>
+               <field name="type">ir.actions.server</field>
+               <field name="state">code</field>
+               <field name="code">
+for rec in env["res.company"].search([("ifs_sirket_kodu","!=",False)]):
+  model._ifs_kur_farki_getir(rec.ifs_sirket_kodu,False,'%')
+               </field>
+               <field name="interval_number">1</field>
+               <field name="numbercall">-1</field>
+               <field name="priority">10</field>
+           </record>
+           <record id="tr_mutabakat_ifs_kdv2_olustur" model="ir.cron">
+               <field name="interval_type">months</field>
+               <field name="name">IFS'den KDV2 Listesi Oluştur</field>
+               <field name="model_id" ref="model_tr_mut_kdv2"/>
+               <field name="type">ir.actions.server</field>
+               <field name="state">code</field>
+               <field name="code">
+for rec in env["res.company"].search([("ifs_sirket_kodu","!=",False)]):
+  model._ifs_kdv2_getir(rec.ifs_sirket_kodu,False,'%')
+               </field>
+               <field name="interval_number">1</field>
+               <field name="numbercall">-1</field>
+               <field name="priority">10</field>
+           </record>
+           <record id="tr_mutabakat_ifs_olustur2" model="ir.cron">
+               <field name="interval_type">months</field>
+               <field name="name">IFS'den Cari Mutabakat Oluştur</field>
+               <field name="model_id" ref="model_tr_mut"/>
+               <field name="type">ir.actions.server</field>
+               <field name="state">code</field>
+               <field name="active">False</field>
+               <field name="code">
+model._ifs_cari_mutabakat_getir('100',#Şirket Kodu
+                   '30.06.2023', #Tarih, 'dd.MM.yyyy' formatında girilmelidir.
+                   '%', #VKN/TCKN No
+                   0, #0 girildiğinde kriterlere giren tüm cariler, 1 girilirse sadece Tarih kısmındaki ayda hareket gören cariler gelir.
+                   )
+               </field>
+               <field name="interval_number">1</field>
+               <field name="numbercall">-1</field>
+               <field name="priority">10</field>
+           </record>
+           <record id="tr_mutabakat_ifs_kf_olustur2" model="ir.cron">
+               <field name="interval_type">months</field>
+               <field name="name">IFS'den Kur Farkı Listesi Oluştur</field>
+               <field name="model_id" ref="model_tr_mut_kf"/>
+               <field name="type">ir.actions.server</field>
+               <field name="state">code</field>
+               <field name="active">False</field>
+               <field name="code">
+model._ifs_kur_farki_getir('100',#Şirket Kodu
+                   '31.03.2023', #Tarih, 'dd.MM.yyyy' formatında girilmelidir.
+                   '%', #VKN/TCKN No
+                   )
+               </field>
+               <field name="interval_number">1</field>
+               <field name="numbercall">-1</field>
+               <field name="priority">10</field>
+           </record>
+           <record id="tr_mutabakat_ifs_kdv2_olustur2" model="ir.cron">
+               <field name="interval_type">months</field>
+               <field name="name">IFS'den KDV2 Listesi Oluştur</field>
+               <field name="model_id" ref="model_tr_mut_kdv2"/>
+               <field name="type">ir.actions.server</field>
+               <field name="state">code</field>
+               <field name="active">False</field>
+               <field name="code">
+model._ifs_kdv2_getir('100',#Şirket Kodu
+                   '31.03.2023', #Tarih, 'dd.MM.yyyy' formatında girilmelidir.
+                   '%', #VKN/TCKN No
+                   )
+               </field>
+               <field name="interval_number">1</field>
+               <field name="numbercall">-1</field>
+               <field name="priority">10</field>
+           </record>
+     </data>
+
+</odoo>

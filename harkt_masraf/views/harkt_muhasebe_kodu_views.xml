@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_harkt_muhasebe_kodu_filter" model="ir.ui.view">
+            <field name="name">harkt.muhasebe.kodu.search</field>
+            <field name="model">harkt.muhasebe.kodu</field>
+            <field name="arch" type="xml">
+                <search string="Muhasebe">
+                    <field name="name" string="Ara" filter_domain="['|',('code', 'ilike', self),('name','ilike', self)]"/>
+                    <searchpanel>
+                        <field name="tr_company_id" icon="fa-building" enable_counters="1"/>
+                        <field name="kod_yapisi" icon="fa-building" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+             </field>
+        </record>
+        <record id="view_harkt_muhasebe_kodu_form" model="ir.ui.view">
+            <field name="name">harkt.muhasebe.kodu.form</field>
+            <field name="model">harkt.muhasebe.kodu</field>
+            <field name="arch" type="xml">
+                <form string="Muhasebe Kodları" create="False" delete="False">
+                    <sheet>
+                        <group col="3">
+                            <field name="tr_company_id" readonly="1"/>
+                            <field name="kod_yapisi" readonly="1"/>
+                            <field name="code" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="valid_from" readonly="1"/>
+                            <field name="valid_to" readonly="1"/>
+                            <field name="detay_secenek_id" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_harkt_muhasebe_kodu_tree" model="ir.ui.view">
+            <field name="name">harkt.muhasebe.kodu.tree</field>
+            <field name="model">harkt.muhasebe.kodu</field>
+            <field name="arch" type="xml">
+                <tree string="Masraf Türleri" sample="1" create="False" delete="False">
+                    <field name="tr_company_id" readonly="1"/>
+                    <field name="kod_yapisi" readonly="1"/>
+                    <field name="code" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="valid_from" readonly="1"/>
+                    <field name="valid_to" readonly="1"/>
+                    <field name="detay_secenek_id" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="harkt_muhasebe_kodu_action" model="ir.actions.act_window">
+            <field name="name">Muhasebe Kodu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">harkt.muhasebe.kodu</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Yeni bir Muhasebe Kodu oluştur
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

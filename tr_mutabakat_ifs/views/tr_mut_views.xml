@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tr_mut_ifs_tree_view">
+            <field name="name">tr.mut.ifs.tree</field>
+            <field name="model">tr.mut</field>
+            <field name="inherit_id" ref="tr_mutabakat.tr_mut_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bakiye_tl']" position="before">
+                    <field name="ilk_ekstre_tarihi"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tr_mut_ifs_form_view">
+            <field name="name">tr.mut.ifs.form</field>
+            <field name="model">tr.mut</field>
+            <field name="inherit_id" ref="tr_mutabakat.tr_mut_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bakiye_tl']" position="before">
+                    <field name="ilk_ekstre_tarihi"/>
+                </xpath>
+                <xpath expr="//button[@name='btn_send_mail']" position="after">
+                    <button name="btn_cari_ekstre_mail_multi" target="new" type="object" string="Ekstreli Mutabakat Gönder" class="btn btn-primary"  icon="fa-solid fa-envelope"/>
+                </xpath>
+                <xpath expr="//button[@name='action_yanit_sifirla']" position="after">
+                    <button name="action_tekrar_hesapla" target="new" type="object" string="IFS'den Yenile" class="btn btn-secondary"  icon="fa-solid fa-calculator"/>
+                    <button name="action_open_ssrs_extre" target="new" type="object" string="Ekstre Excel" class="btn btn-secondary"  icon="fa-solid fa-file"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_tr_mut_ifs_yenile" model="ir.actions.act_window">
+            <field name="name">IFS Mutabakat Yenile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.cron</field>
+            <field name="res_id" ref="tr_mutabakat_ifs.tr_mutabakat_ifs_olustur2"/>
+            <field name="view_mode">form</field>
+            <field name="domain"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"></p>
+            </field>
+        </record>
+        <record id="action_tr_mut_kf_ifs_yenile" model="ir.actions.act_window">
+            <field name="name">IFS Kur Farkı Yenile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.cron</field>
+            <field name="res_id" ref="tr_mutabakat_ifs.tr_mutabakat_ifs_kf_olustur2"/>
+            <field name="view_mode">form</field>
+            <field name="domain"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"></p>
+            </field>
+        </record>
+         <record id="action_tr_mut_kdv2_ifs_yenile" model="ir.actions.act_window">
+            <field name="name">IFS Kur Farkı Yenile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.cron</field>
+            <field name="res_id" ref="tr_mutabakat_ifs.tr_mutabakat_ifs_kdv2_olustur2"/>
+            <field name="view_mode">form</field>
+            <field name="domain"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"></p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sas_baslik_reject_wizard_view_form" model="ir.ui.view">
+            <field name="name">sas.baslik.reject.wizard.view.form</field>
+            <field name="model">sas.baslik.reject.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group id="info" string="Reddetmeden önce Red nedeni girilmelidir">
+                            <field name="workflow_id" readonly="True"/>
+                            <field name="reject_reason"/>
+                            <field name="red_kodu_id"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_reject_with_reason" string="OK" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sas_baslik_reject_wizard_action" model="ir.actions.act_window">
+            <field name="name">Satınalma Siparişi Reddi</field>
+            <field name="res_model">sas.baslik.reject.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_ifs_onay_admin" model="res.groups">
+        <field name="name">IFS Onay - Admin</field>
+    </record>
+    <record id="ir_rule_sas_baslik_user" model="ir.rule">
+        <field name="name">Sas Görme</field>
+        <field name="model_id" ref="model_sas_baslik"/>
+        <field name="domain_force">[('next_approver_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="ir_rule_sas_baslik_admin" model="ir.rule">
+        <field name="name">Tüm Sas Onaylarını Görme</field>
+        <field name="model_id" ref="model_sas_baslik"/>
+        <field name="groups" eval="[(4, ref('ifs_onay.group_ifs_onay_admin')), (4, ref('base.group_system'))]"/>
+    </record>
+</odoo>

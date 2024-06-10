@@ -1,0 +1,10 @@
+suds
+cx-oracle
+pdfkit
+xlutils
+easyocr==1.7.0
+torchvision==0.13.1
+geopy
+geocoder
+pandas
+XlsxWriter==3.0.5

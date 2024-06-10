@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-inherit="hr_attendance.attendance_menu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown//t[@t-set-slot='default']//button[@t-if='this.isFirstAttendance']" position="after">
+            <div class="attendance_controls">
+                <div t-attf-class="work_type_container mb8 {{ this.show_work_type ? '' : 'd-none' }}" id="work_type_container" t-ref="work_type_container">
+                    <i t-attf-class="fa fa-1x fa-angle-double-up work_type_toggle" id="work_type_toggle" t-on-click="onToggleWorkType" t-ref="work_type_toggle">
+                        Work Type
+                    </i>
+                    <div t-attf-class="work_type_view" t-ref="work_type_view">
+                        <select name="work_types" id="oe_attendance_work_types"  t-ref="work_types_input" class="o_input mt8 oe_attendance_work_types" placeholder="Select / Enter your Work Type here.">
+                            <option></option>
+                            <t t-foreach="work_types" t-as="work_type" t-key="work_type.id">
+
+                                <t t-if="work_type.code == 'N001' or work_type.code=='N002' or work_type.code == 'N003' or work_type.code=='N004'">
+                                         <option t-att-value="work_type.id"  t-att-selected="check_in_work_type_id == work_type.id"><t t-esc="work_type.name"></t></option>
+                                </t>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+
+                <div t-attf-class="project_container mb8 {{ this.show_work_type ? '' : 'd-none' }}" id="project_container" t-ref="project_container">
+                    <i t-attf-class="fa fa-1x fa-angle-double-up project_toggle" id="project_toggle" t-on-click="onToggleProject" t-ref="project_toggle">
+                        Project
+                    </i>
+                    <div t-attf-class="project_view" t-ref="project_view">
+                        <select id="oe_attendance_projects" name="projects" t-ref="projects_input" class="o_input mt8 oe_attendance_projects" placeholder="Select / Enter your Project here.">
+                            <option></option>
+                            <t t-foreach="projects" t-as="project" t-key="project.id">
+                                <option t-att-value="project.id" t-att-selected="check_in_project_id == project.id"><t t-esc="project.name"/>-<t t-esc="project.code"/></option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+
+                <div t-attf-class="work_container mb8 {{ this.show_work_type ? '' : 'd-none' }}" id="work_container" t-ref="work_container">
+                    <i t-attf-class="fa fa-1x fa-angle-double-up work_toggle" id="work_toggle" t-on-click="onToggleWork" t-ref="work_toggle">
+                        Work Description
+                    </i>
+
+                    <div t-attf-class="work_view" t-ref="work_view">
+                        <t t-if="check_in_work">
+                            <input type="text" name="work" id="oe_attendance_works" list="work_list" class="o_input mt8 oe_attendance_works"
+                           placeholder="Describe your work" autocomplete="off" t-ref="work_input"  t-att-value="check_in_work"/>
+                        </t>
+                        <t t-else="">
+                            <input type="text" name="work" id="oe_attendance_works" list="work_list" class="o_input mt8 oe_attendance_works"
+                           placeholder="Describe your work" autocomplete="off" t-ref="work_input" />
+                        </t>
+
+                    </div>
+                </div>
+
+
+                <div t-attf-class="glocation_container mb8 d-none" id="glocation_container" t-ref="glocation_container">
+                    <i t-attf-class="fa fa-1x fa-angle-double-down glocation_toggle" id="glocation_toggle" t-on-click="onToggleGeolocation" t-ref="glocation_toggle">
+                        Geo Location
+                    </i>
+                    <div t-attf-class="glocation_view d-none" t-ref="glocation_view" >
+                        <span>Lattitude:  <t t-esc="state.latitude"/></span>
+                        <span>, Longitude: <t t-esc="state.longitude"/></span>
+                    </div>
+                </div>
+
+
+                <div t-attf-class="geofence_container mb8 d-none" id="geofence_container" t-ref="geofence_container">
+                    <i t-attf-class="fa fa-1x fa-angle-double-down geofence_toggle" id="geofence_toggle" t-on-click="onTogglegeofence" t-ref="geofence_toggle">
+                        Map Location
+                    </i>
+                    <div t-attf-class="geofence_view d-none" t-ref="geofence_view"></div>
+                </div>
+
+                <div t-attf-class="geoipaddress_container mb8 d-none" id="geoipaddress_container" t-ref="geoipaddress_container">
+                    <i t-attf-class="fa fa-1x fa-angle-double-down geoipaddress_toggle" id="geoipaddress_toggle"  t-on-click="onToggleGeoipaddress" t-ref="geoipaddress_toggle">
+                        IP Address (Public)
+                    </i>
+                    <div t-attf-class="geoipaddress_view d-none" t-ref="geoipaddress_view">
+                        <span> IP: <t t-esc="state.ipaddress"/></span>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</template>

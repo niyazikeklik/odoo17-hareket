@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_harkt_masraf_root"
+            name="Masraf Modülü"
+            web_icon="harkt_masraf,static/description/icon.png"
+            sequence="-90"/>
+        <menuitem
+            id="menu_harkt_para_talebi"
+            name="Para Talebi"
+            parent="menu_harkt_masraf_root"
+            action="harkt_para_talebi_action"
+            sequence="10"/>
+        <menuitem
+            id="menu_harkt_masraf"
+            name="Masraf Beyan"
+            parent="menu_harkt_masraf_root"
+            action="harkt_masraf_action"
+            sequence="5"/>
+        <menuitem
+            id="menu_harkt_masraf_ayar"
+            name="Ayarlar"
+            parent="menu_harkt_masraf_root"
+            sequence="100"/>
+        <menuitem
+            id="menu_harkt_detay_secenek"
+            name="Detay Seçenekleri"
+            action="harkt_detay_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="10"/>
+        <menuitem
+            id="menu_harkt_kdv_kodu"
+            name="Kdv Kodları"
+            action="harkt_kdv_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="20"/>
+        <menuitem
+            id="menu_harkt_masraf_ongrup"
+            name="Masraf Ön Grupları"
+            action="harkt_masraf_ongrup_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="30"/>
+        <menuitem
+            id="menu_harkt_masraf_turu"
+            name="Masraf Türleri"
+            action="harkt_masraf_turu_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="40"/>
+        <menuitem
+            id="menu_harkt_muhasebe_kodu"
+            name="Muhasebe Kodları"
+            action="harkt_muhasebe_kodu_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="50"/>
+        <menuitem
+            id="menu_harkt_proje"
+            name="Projeler"
+            action="harkt_proje_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="70"/>
+        <menuitem
+            id="menu_harkt_aktivite"
+            name="Aktiviteler"
+            action="harkt_aktivite_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="80"/>
+        <menuitem
+            id="menu_harkt_nakit_hesap"
+            name="Nakit Hesaplar"
+            action="harkt_nakit_hesap_action"
+            parent="menu_harkt_masraf_ayar"
+            sequence="90"/>
+
+    </data>
+</odoo>

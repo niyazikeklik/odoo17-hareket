@@ -1,0 +1,28 @@
+<odoo>
+    <!-- Inherit Form View -->
+    <record id="mm_survey_attachment_inherit_survey_user_input_line_form"
+            model="ir.ui.view">
+        <field name="name">add upload to user input</field>
+        <field name="model">survey.user_input.line</field>
+        <field name="inherit_id" ref="survey.survey_user_input_line_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='answer_type']" position="after">
+                 <field name="value_file"/>
+                 <field name="website_url"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mm_survey_attachment_survey_user_input_form"
+            model="ir.ui.view">
+        <field name="name">survey.user_input.form (mm_survey_attachment)</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='answer_type']" position="after">
+                 <field name="filename" invisible="1"/>
+                 <field name="website_url" widget="url" text_field="filename"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
