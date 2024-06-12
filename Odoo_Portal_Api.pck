@@ -1,4 +1,132 @@
-ÔªøCREATE OR REPLACE PACKAGE BODY Odoo_Portal_Api IS
+CREATE OR REPLACE PACKAGE Odoo_Portal_Api IS
+
+FUNCTION Get_Emp_Org_Code(company_id_ varchar2, emp_no_ varchar2) return varchar2;
+
+FUNCTION Get_Sup_Emp_no(company_id_ VARCHAR2, emp_no_ varchar2) return varchar2;
+
+procedure Portal_Send_Pur_Ord(order_no_ varchar2, check_ number default 0);
+
+PROCEDURE approve_sas(order_no_ varchar2, change_order_no_ varchar2, sequence_no_ number);
+
+PROCEDURE reject_sas(order_no_ varchar2, change_order_no_ varchar2, sequence_no_ number, reject_code_ varchar2, reject_reason_ varchar2);
+
+Procedure masraf_detay_ekle(detay_ varchar2);
+
+Procedure masraf_detay_sil(detay_ varchar2);
+
+PROCEDURE masraf_kdv(company_ VARCHAR2, kdv_orani_ number);
+
+Procedure masraf_kdv_sil(company_ VARCHAR2, kdv_orani_ number);
+
+PROCEDURE masraf_ongrup(ongrup_kodu_ VARCHAR2);
+
+Procedure masraf_ongrup_sil(ongrup_kodu_ VARCHAR2);
+
+PROCEDURE masraf_turu(masraf_turu_kodu_ VARCHAR2);
+
+Procedure masraf_turu_sil(masraf_turu_kodu_ VARCHAR2);
+
+PROCEDURE muhasebe_kodu(company_ VARCHAR2, code_part_ varchar2, code_part_value_ varchar2);
+
+PROCEDURE muhasebe_kodu_sil(company_ VARCHAR2, code_part_ varchar2, code_part_value_ varchar2);
+
+PROCEDURE aktivite(activity_seq_ number);
+
+Procedure aktivite_sil(activity_seq_ number);
+
+PROCEDURE proje(project_id_ varchar2);
+
+PROCEDURE proje_sil(project_id_ varchar2);
+
+FUNCTION Get_Emp_Bolum_For_Talep (
+  company_ IN VARCHAR2, 
+  emp_no_ VARCHAR2 ) RETURN VARCHAR2;
+  
+PROCEDURE nakit_hesap(company_ varchar2, short_name_ VARCHAR2);
+
+Procedure nakit_hesap_sil(company_ varchar2, short_name_ varchar2);
+
+procedure para_sil_ifs2_odoo(talep_id_ varchar2);
+
+procedure para_satir_sil_ifs2_odoo(talep_id_ varchar2, satir_no_ number);
+
+procedure masraf_sil_ifs2_odoo(masraf_no_ varchar2);
+
+procedure masraf_satir_sil_ifs2_odoo(masraf_no_ varchar2, satir_no_ number);
+  
+PROCEDURE para_talebi_odoo2_ifs(
+  company_id_         IN     VARCHAR2,
+  talep_eden_id_      IN     VARCHAR2,
+  talep_tarihi_       IN     DATE,
+  bolum_              IN     VARCHAR2,
+  notlar_             IN     VARCHAR2,
+  currency_           IN     VARCHAR2,
+  proje_              IN     VARCHAR2,
+  proje_turu_         IN     VARCHAR2,
+  durum_              IN     VARCHAR2,
+  ref_talep_          IN     VARCHAR2,
+  details_            IN     CLOB,
+  para_talep_no_      IN OUT VARCHAR2);
+  
+
+PROCEDURE para_talebi_onay_odoo2_ifs(
+  talep_id_ VARCHAR2,
+  line_no_ number,
+  step_no_ number,
+  approval_status_db_ varchar2 default 'APP',
+  note_ varchar2 default null);
+  
+procedure para_ifs2_odoo(talep_id_ varchar2);
+procedure para_satir_ifs2_odoo(talep_id_ varchar2, satir_no_ number);
+
+PROCEDURE masraf_odoo2_ifs(
+  company_id_         IN     VARCHAR2,
+  user_id_            IN     VARCHAR2,
+  bolum_              IN     VARCHAR2,
+  notlar_             IN     VARCHAR2,
+  currency_           IN     VARCHAR2,
+  durum_              IN     VARCHAR2,
+  details_            IN     CLOB,
+  masraf_no_          IN     OUT VARCHAR2);
+  
+procedure masraf_ifs2_odoo(masraf_no_ varchar2);
+procedure masraf_satir_ifs2_odoo(masraf_no_ varchar2, line_no_ number);
+
+PROCEDURE masraf_sil_odoo2_ifs(masraf_no_ varchar2);
+
+PROCEDURE masraf_satir_sil_odoo2_ifs(masraf_no_ varchar2, satir_no_ number);
+
+PROCEDURE para_sil_odoo2_ifs(talep_id_ varchar2);
+
+PROCEDURE para_satir_sil_odoo2_ifs(talep_id_ varchar2, line_no_ number);
+
+PROCEDURE Dokuman_Ekle (
+   doc_title_ IN VARCHAR2,
+   doc_no_ IN OUT VARCHAR2,
+   doc_sheet_ IN OUT VARCHAR2,
+   doc_rev_ IN OUT VARCHAR2,
+   file_name_ IN OUT VARCHAR2,
+   ext_ IN VARCHAR2,
+   lu_name_ IN VARCHAR2,
+   key_ref_ IN VARCHAR2 );
+   
+PROCEDURE Dokuman_Sil(
+   file_name_ IN  VARCHAR2,
+   lu_name_ IN VARCHAR2,
+   key_ref_ IN VARCHAR2);
+
+
+PROCEDURE Para_Talebi_Set_Iptal(Talep_id_ IN VARCHAR2 );
+
+PROCEDURE Masraf_Set_Yayinlandi(Masraf_No_ IN VARCHAR2 );
+
+PROCEDURE Masraf_Set_Iptal(Masraf_No_ IN VARCHAR2 );
+
+PROCEDURE Init;
+
+END Odoo_Portal_Api;
+/
+CREATE OR REPLACE PACKAGE BODY Odoo_Portal_Api IS
 
 -----------------------------------------------------------------------------
 -------------------- PRIVATE DECLARATIONS -----------------------------------
@@ -73,7 +201,7 @@ BEGIN
         and po.order_no = order_no_) LOOP
          chg_order_ := 1;
          --pur_req_lines_.append(pljson('{"line_no": '||rec_.line_no||}', "release_no":'||rec_.release_no||',"part_no"="'||rec_.part_no||'","description"="'||rec_.description||'","buy_unit_meas"="'||rec_.buy_unit_meas||'","quantity"='||rec_.quantity||'}').to_json_value);
-         if lines_ is null or length(lines_)<30000 THEN
+         if lines_ is null or length(lines_)<25000 THEN
            lines_ := lines_ ||'{
 "baslik_id": 0, 
 "line_no": '||rec_.line_no||', 
@@ -112,9 +240,9 @@ BEGIN
           sub_project_api.Get_Description(pol.project_id,activity_api.Get_Sub_Project_Id(activity_seq)) alt_proje_adi,
           pol.note_text notlar
          from ifsapp.purchase_order_line_tab pol where pol.order_no = order_no_) LOOP
-              dbms_output.put_line('test');
+              --dbms_output.put_line('test');
            --pur_req_lines_.append(pljson('{"line_no": '||rec_.line_no||}', "release_no":'||rec_.release_no||',"part_no"="'||rec_.part_no||'","description"="'||rec_.description||'","buy_unit_meas"="'||rec_.buy_unit_meas||'","quantity"='||rec_.quantity||'}').to_json_value);
-           if lines_ is null or length(lines_)<30000 THEN
+           if lines_ is null or length(lines_)<25000 THEN
              lines_ := lines_ ||'{
   "baslik_id": 0, 
   "line_no": '||rec_.line_no||', 
@@ -149,7 +277,7 @@ BEGIN
 "line_no": 9999, 
 "release_no":0,
 "part_no":"",
-"description":"+'||extra_satir_sayisi_||' sat√Ωr daha kay√Ωt mevcut l√ºtfen talebi IFSden kontrol ediniz",
+"description":"+'||extra_satir_sayisi_||' sat˝r daha kay˝t mevcut l¸tfen talebi IFSden kontrol ediniz",
 "buy_unit_meas":"X",
 "unit_price":"'||replace(total_price_,',','.')||'",
 "total_price":"'||replace(total_price_,',','.')||'",
@@ -163,11 +291,10 @@ BEGIN
      end if;
      lines_ := replace(lines_,'"quantity":.','"quantity":0.');
      for rec_ in(select pr.route,pr.sequence_no, pr.approval_rule, pr.approver_sign,
-       pr.date_approved,revoked_signature_id revoked_sign,revoked_date,nvl(FORWARDED_TO,authorize_id) authorize_id,
-       person_info_api.get_name(nvl(FORWARDED_TO,authorize_id)) authorize_name, pr.chg_order_no
+       pr.date_approved,revoked_signature_id revoked_sign,revoked_date,authorize_id,
+       person_info_api.get_name(authorize_id) authorize_name, pr.chg_order_no
          from ifsapp.purchase_order_approval pr where pr.order_no = order_no_
-         and nvl(purch_chg_ord_api.Get_Objstate(order_no_,pr.chg_order_no),'*') != 'Cancelled'
-         ) LOOP
+         and nvl(purch_chg_ord_api.Get_Objstate(order_no_,pr.chg_order_no),'*') != 'Cancelled') LOOP
          --pur_req_lines_.append(pljson('{"line_no": '||rec_.line_no||}', "release_no":'||rec_.release_no||',"part_no"="'||rec_.part_no||'","description"="'||rec_.description||'","buy_unit_meas"="'||rec_.buy_unit_meas||'","quantity"='||rec_.quantity||'}').to_json_value);
          if rec_.date_approved is not null then
            date_approved_line_ := '"date_approved":"'||to_char(rec_.date_approved,'yyyy-MM-dd hh24:mi:ss')||'",';
@@ -236,7 +363,8 @@ BEGIN
        files_ := substr(files_,1,length(files_)-1);
      end if;
      --json_request_ := '{"id":'||'123'||',"jsonrpc":"2.0","method":"call","params":{"service":"object","method":"execute_kw","args":["PROD",2,"080808","tr.purch_req","create_all",['||req_||'], ['||lines_||'],[],[]]}}';       
-      dbms_output.put_line(json_request_);
+      dbms_output.put_line('AAAAA');
+      
       for rec_ in(select order_no, vendor_no, supplier_info_api.get_name(vendor_no) tedarikci_adi,
         contract, PURCHASE_ORDER_TYPE_API.Get_Description( ORDER_CODE ) order_code,WANTED_RECEIPT_DATE ,
         HARKT_PURCH_ORDER_TYPE_API.GET_DESCRIPTION(ORDER_TYPE) order_type,
@@ -245,7 +373,9 @@ BEGIN
         project_api.get_name(a.project_id) proje_adi, 
         nvl(b.cf$_note_text,a.note_text) note_text
          from purchase_order_tab a, purchase_order_cft b where a.order_no = order_no_ and a.rowkey=b.rowkey(+)) LOOP
-         dbms_output.put_line('trk test');
+         dbms_output.put_line(length(lines_));
+         dbms_output.put_line(length(histories_));
+         dbms_output.put_line(length(files_));
         req_ := '
         {
           "order_no": "'||rec_.order_no||'",
@@ -268,6 +398,7 @@ BEGIN
           "onay_ids":['||histories_||'],
           "doc_ids":['||files_||']
         }';
+        dbms_output.put_line('test2');
      END LOOP;
      if req_ is null then
        req_ := '{ "order_no":"'||order_no_||'",
@@ -278,10 +409,11 @@ BEGIN
        }';
      end if;
 
-     dbms_output.put_line('2');
+     dbms_output.put_line('1111');
      for rec_ in(select * from odoo_portal_param_tab where param_name='ODOO_SERVER') loop
        json_request_ := '{"id":'||'123'||',"jsonrpc":"2.0","method":"call","params":{"service":"object","method":"execute_kw","args":["'||rec_.param_value2||'",'||rec_.param_value3||',"'||rec_.param_value4||'","sas.baslik","create_or_write_all",['||req_||','||check_||']]}}';  
        dbms_output.put_line('2.1:'||rec_.param_value||'/jsonrpc');
+       dbms_output.put_line(json_request_);
        http_req:= utl_http.begin_request
                     ( 
                     rec_.param_value||'/jsonrpc'
@@ -293,6 +425,7 @@ BEGIN
         dbms_output.put_line('2.2');
      end loop;
      dbms_output.put_line('3');
+     
      UTL_HTTP.SET_BODY_CHARSET('UTF-8');
      UTL_HTTP.set_header(http_req, 'Connection', 'close');
      UTL_HTTP.set_header(http_req, 'Content-Type', 'application/json');
@@ -303,7 +436,7 @@ BEGIN
        dbms_output.put_line('5');
      utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
      json_response := null;
-     dbms_output.put_line('√ùstek');
+     dbms_output.put_line('›stek');
       dbms_output.put_line(json_request_);
      FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
      LOOP
@@ -311,7 +444,7 @@ BEGIN
          json_response := json_response || v_txt; -- build up CLOB
      END LOOP;
      utl_http.end_response(http_resp);
-     dbms_output.put_line('D√∂n√º√æ');
+     dbms_output.put_line('Dˆn¸˛');
      dbms_output.put_line(json_response);
 EXCEPTION WHEN OTHERS THEN
       NULL;
@@ -327,7 +460,7 @@ BEGIN
   select count(1) INTO cnt_ from user_allowed_site_tab s where s.userid = fnd_session_api.Get_Fnd_User() and s.contract = site_;
   IF cnt_ = 0 THEN
     
-    error_sys.system_general('<hata>Sipari√æ onaylanamad√Ω. '||site_||' sitesine yetkiniz yoktur, sistem y√∂neticinizle ileti√æime ge√ßiniz.</hata>');
+    error_sys.system_general('<hata>Sipari˛ onaylanamad˝. '||site_||' sitesine yetkiniz yoktur, sistem yˆneticinizle ileti˛ime geÁiniz.</hata>');
   END IF;
   for rec_ in(select * from purchase_order_approval_tab a where a.order_no = order_no_ and a.chg_order_no = change_order_no_ 
     and a.sequence_no= sequence_no_ and rownum=1) loop
@@ -350,11 +483,11 @@ BEGIN
   company_ := site_api.get_company(site_);
   select count(1) INTO cnt_ from  PUR_AUTH_REJECT_REASON p where p.company = company_ and p.reject_reason_id = reject_code_;
   IF cnt_ = 0 THEN
-    Error_sys.system_general('<hata>Hata kodu '||reject_code_||', '||company_||' √æirketinde tan√Ωml√Ω de√∞il, l√ºtfen sistem y√∂neticinizle ileti√æime ge√ßiniz.</hata>');
+    Error_sys.system_general('<hata>Hata kodu '||reject_code_||', '||company_||' ˛irketinde tan˝ml˝ deil, l¸tfen sistem yˆneticinizle ileti˛ime geÁiniz.</hata>');
   END IF;
   select count(1) INTO cnt_ from user_allowed_site_tab s where s.userid = fnd_session_api.Get_Fnd_User() and s.contract = site_;
   IF cnt_ = 0 THEN
-    error_sys.system_general('<hata>Sipari√æ reddedilemedi. '||site_||' sitesine yetkiniz yoktur, sistem y√∂neticinizle ileti√æime ge√ßiniz.</hata>');
+    error_sys.system_general('<hata>Sipari˛ reddedilemedi. '||site_||' sitesine yetkiniz yoktur, sistem yˆneticinizle ileti˛ime geÁiniz.</hata>');
   END IF;
  for rec_ in(select * from purchase_order_approval a where a.order_no = order_no_ and a.chg_order_no = change_order_no_ 
    and a.sequence_no = sequence_no_ and rownum=1) loop
@@ -362,7 +495,7 @@ BEGIN
      IFSAPP.Purchase_Order_Approval_API.Reject_Authorization(rec_.order_no,
      rec_.chg_order_no, rec_.sequence_no, reject_code_, reject_reason_);
    exception when others then
-     error_sys.system_general('<hata>Sipari√æ reddedilemedi. L√ºtfen sistem y√∂neticinizle ileti√æime ge√ßiniz.</hata>');
+     error_sys.system_general('<hata>Sipari˛ reddedilemedi. L¸tfen sistem yˆneticinizle ileti˛ime geÁiniz.</hata>');
    end;
    --Portal_Send_Pur_ord(rec_.order_no);
  end loop;
@@ -406,7 +539,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -414,7 +547,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_detay_ekle;
 
@@ -453,7 +586,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -461,7 +594,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_detay_sil;
 
@@ -507,7 +640,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -515,7 +648,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_kdv;
 
@@ -554,7 +687,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -562,7 +695,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_kdv_sil;
 
@@ -605,7 +738,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -613,7 +746,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_ongrup;
 
@@ -652,7 +785,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -660,7 +793,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_ongrup_sil;
 
@@ -715,7 +848,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -723,7 +856,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_turu;
 
@@ -761,7 +894,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -769,7 +902,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END masraf_turu_sil;
 
@@ -822,7 +955,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -830,7 +963,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END muhasebe_kodu;
 
@@ -869,7 +1002,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -877,7 +1010,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END muhasebe_kodu_sil;
 
@@ -923,7 +1056,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -931,7 +1064,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END proje;
 
@@ -970,7 +1103,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -978,7 +1111,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END proje_sil;
 
@@ -1025,7 +1158,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1033,7 +1166,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END aktivite;
 
@@ -1049,7 +1182,7 @@ IS
   v_txt varchar2(32767);
 BEGIN
   FOR rec_ IN(select * from odoo_portal_param_tab where param_name='ODOO_SERVER') LOOP
-       json_request_ := '{"id":'||'123'||',"jsonrpc":"2.0","method":"call","params":{"service":"object","method":"execute_kw","args":["'||rec_.param_value2||'",'||rec_.param_value3||',"'||rec_.param_value4||'","harkt.aktivite","delete",["ongrup_kodu", "'||activity_seq_||'"]]}}';  
+       json_request_ := '{"id":'||'123'||',"jsonrpc":"2.0","method":"call","params":{"service":"object","method":"execute_kw","args":["'||rec_.param_value2||'",'||rec_.param_value3||',"'||rec_.param_value4||'","harkt.aktivite","delete",["activity_seq", "'||activity_seq_||'"]]}}';  
        dbms_output.put_line('2.1:'||rec_.param_value||'/jsonrpc');
        http_req:= utl_http.begin_request
                     ( 
@@ -1072,7 +1205,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1080,7 +1213,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END aktivite_sil;
 
@@ -1129,7 +1262,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1137,7 +1270,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END nakit_hesap;
 
@@ -1175,7 +1308,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1183,7 +1316,7 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
 END nakit_hesap_sil;
 
@@ -1352,7 +1485,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1360,10 +1493,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(talep_id_||':'||json_response);
+      error_sys.system_general(talep_id_||':'||substr(json_response,1,1900));
    end if;
 END para_sil_ifs2_odoo;
 
@@ -1409,7 +1542,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1417,10 +1550,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(talep_id_||':'||json_response);
+      error_sys.system_general(talep_id_||':'||substr(json_response,1,1900));
    end if;
 END para_satir_sil_ifs2_odoo;
 
@@ -1466,7 +1599,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1474,10 +1607,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(masraf_no_||':'||json_response);
+      error_sys.system_general(masraf_no_||':'||substr(json_response,1,1900));
    end if;
 END masraf_sil_ifs2_odoo;
 
@@ -1525,7 +1658,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1533,10 +1666,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(masraf_no_||':'||json_response);
+      error_sys.system_general(masraf_no_||':'||substr(json_response,1,1900));
    end if;
 END masraf_satir_sil_ifs2_odoo;
 
@@ -1552,7 +1685,6 @@ IS
   date_approved_line_ varchar2(4000);
   histories_ varchar2(4000);
 BEGIN
-  
   FOR rec_ IN(select o.*,talep_id, company, talep_tarihi, decode(nvl(proje_turu,'*'),'ETUT','Etut','TALIMAT','Talimat',proje_turu) proje_turu, proje_id, bolum, talep_eden, durum, ref_talep_no, note_text, para_birimi, onay_aciklamasi, currency_code, kiralik, kiralik_plaka
      from odoo_portal_param_tab o, harkt_para_talep_tab a where param_name='ODOO_SERVER' and talep_id = talep_id_) LOOP
        FOR hrec_ IN(select a.*
@@ -1615,7 +1747,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1623,10 +1755,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(talep_id_||':'||json_response);
+      error_sys.system_general(talep_id_||':'||substr(json_response,1,1900));
    end if;
 END para_ifs2_odoo;
 
@@ -1693,7 +1825,7 @@ BEGIN
    dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
    dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -1701,10 +1833,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(talep_id_||'-'||satir_no_||'-'||json_response);
+      error_sys.system_general(talep_id_||'-'||satir_no_||'-'||substr(json_response,1,1900));
    end if;
 END para_satir_ifs2_odoo;
 
@@ -1732,7 +1864,7 @@ IS
   attr_cf_ varchar2(32000);
   cnt_ number;
 BEGIN
-  --ERROR_SYS.SYSTEM_GENERAL('√áALI√ûMA YAPILIYOR'||TALEP_EDEN_ID_);
+  --ERROR_SYS.SYSTEM_GENERAL('«ALIﬁMA YAPILIYOR'||TALEP_EDEN_ID_);
   begin
      test_:= round(to_NUMBER('100.02'),2);
      dec_sep_:='.';
@@ -1765,6 +1897,8 @@ BEGIN
       END LOOP;
     ELSIF durum_ = 'YAYINLANDI' THEN
       harkt_para_talep_api.Set_Yayinlandi(para_talep_no_);
+    ELSIF durum_ = 'YAYINLANDI' THEN
+      harkt_para_talep_api.Set_Kontrol_Gonder(para_talep_no_);
     ELSIF durum_ = 'IPTAL' THEN
       odoo_portal_api.para_talebi_set_iptal(para_talep_no_);
     END IF;
@@ -1954,6 +2088,8 @@ BEGIN
       END LOOP;
     ELSIF durum_ = 'YAYINLANDI' THEN
        odoo_portal_api.masraf_set_yayinlandi(masraf_no_);
+    ELSIF durum_ = 'KONTROL_BEKLIYOR' THEN
+       HARKT_MASRAF_GIRIS_API.Set_Kontrol_Gonder(masraf_no_);
     ELSIF durum_ = 'IPTAL' THEN
        odoo_portal_api.masraf_set_iptal(masraf_no_); 
     END IF;
@@ -2139,7 +2275,7 @@ BEGIN
      dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
     dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -2147,10 +2283,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(masraf_no_||':'||json_response);
+      error_sys.system_general(masraf_no_||':'||substr(json_response,1,1900));
    end if;
 END masraf_ifs2_odoo;
 
@@ -2248,7 +2384,7 @@ BEGIN
    dbms_output.put_line('5');
    utl_http.get_header_by_name(http_resp, 'Content-Length', v_len, 1); -- Obtain the length of the response
    json_response := null;
-   dbms_output.put_line('√ùstek');
+   dbms_output.put_line('›stek');
    dbms_output.put_line(json_request_);
    FOR i in 1..CEIL(v_len/32767) -- obtain response in 32K blocks just in case it is greater than 32K
    LOOP
@@ -2256,10 +2392,10 @@ BEGIN
        json_response := json_response || v_txt; -- build up CLOB
    END LOOP;
    utl_http.end_response(http_resp);
-   dbms_output.put_line('D√∂n√º√æ');
+   dbms_output.put_line('Dˆn¸˛');
    dbms_output.put_line(json_response);
    if not json_response like '%"result": true%' then
-      error_sys.system_general(masraf_no_||'-'||line_no_||'-'||json_response);
+      error_sys.system_general(masraf_no_||'-'||line_no_||'-'||substr(json_response,1,1900));
    end if;
 END masraf_satir_ifs2_odoo;
 
